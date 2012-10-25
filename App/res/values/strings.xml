@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DevFest Nantes 2012</string>
+    <string name="action_speakers">Speakers</string>
+    <string name="action_sessions">Sessions</string>
+    <string name="action_agenda">Agenda</string>
+    <string name="action_about">A propos</string>
+    <string name="tab_android">Android</string>
+    <string name="tab_web">Web</string>
+    <string name="tab_cloud">Cloud / APIs</string>
+    <string name="tab_codelba">Ateliers</string>
+        
+
+</resources>
