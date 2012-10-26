@@ -1,16 +1,15 @@
 package com.binomed.devfest.utils;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.binomed.devfest.R;
 import com.binomed.devfest.screen.HomeFragment;
 import com.slidingmenu.lib.SlidingMenu;
-import com.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public abstract class DevFestSlidingActivity extends SlidingFragmentActivity {
+public abstract class DevFestSlidingActivity extends SherlockFragmentSlidingActivity {
 
 	private static final int ITEM_ABOUT = 1;
 
@@ -29,6 +28,7 @@ public abstract class DevFestSlidingActivity extends SlidingFragmentActivity {
 
 	}
 
+	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
 		switch (item.getItemId()) {
@@ -47,6 +47,7 @@ public abstract class DevFestSlidingActivity extends SlidingFragmentActivity {
 
 	}
 
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		menu.add(0, ITEM_ABOUT, 1, R.string.action_about) //

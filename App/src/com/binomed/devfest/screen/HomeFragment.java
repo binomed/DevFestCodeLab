@@ -1,24 +1,27 @@
 package com.binomed.devfest.screen;
 
 import roboguice.inject.InjectView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.binomed.devfest.R;
+import com.binomed.devfest.screen.infos.InfosActivity;
+import com.binomed.devfest.screen.sessions.SessionsActivity;
+import com.binomed.devfest.screen.speakers.SpeakersActivity;
 import com.binomed.devfest.utils.RoboSherlockFragment;
-import com.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.binomed.devfest.utils.SherlockFragmentSlidingActivity;
 
 public class HomeFragment extends RoboSherlockFragment implements OnClickListener {
 
 	@InjectView(R.id.home_btn_speakers)
 	Button speakersBtn;
-	@InjectView(R.id.home_btn_agenda)
-	Button agendaBtn;
+	@InjectView(R.id.home_btn_infos)
+	Button infosBtn;
 	@InjectView(R.id.home_btn_sessions)
 	Button sessionsBtn;
 
@@ -33,7 +36,7 @@ public class HomeFragment extends RoboSherlockFragment implements OnClickListene
 		super.onViewCreated(view, savedInstanceState);
 
 		speakersBtn.setOnClickListener(this);
-		agendaBtn.setOnClickListener(this);
+		infosBtn.setOnClickListener(this);
 		sessionsBtn.setOnClickListener(this);
 
 	}
@@ -48,26 +51,27 @@ public class HomeFragment extends RoboSherlockFragment implements OnClickListene
 
 	@Override
 	public void onClick(View v) {
-		((SlidingFragmentActivity) getActivity()).toggle();
+		((SherlockFragmentSlidingActivity) getActivity()).toggle();
 		int id = v.getId();
 		switch (id) {
 		case R.id.home_btn_speakers: {
-			// Intent intent = new Intent(getActivity(), TripsActivity.class);
-			// intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-			// startActivity(intent);
-			Toast.makeText(getActivity(), "Speakers", Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(getActivity(), SpeakersActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			startActivity(intent);
 			break;
 		}
-		case R.id.home_btn_agenda:
-			// Intent intent = new Intent(getActivity(), EditionActivity.class);
-			// intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-			// startActivity(intent);
-			Toast.makeText(getActivity(), "Agenda", Toast.LENGTH_SHORT).show();
+		case R.id.home_btn_infos: {
+			Intent intent = new Intent(getActivity(), InfosActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			startActivity(intent);
 			break;
-		case R.id.home_btn_sessions:
-			// TODO
-			Toast.makeText(getActivity(), "Sessions", Toast.LENGTH_SHORT).show();
+		}
+		case R.id.home_btn_sessions: {
+			Intent intent = new Intent(getActivity(), SessionsActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			startActivity(intent);
 			break;
+		}
 		default:
 			break;
 		}

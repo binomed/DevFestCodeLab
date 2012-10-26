@@ -4,12 +4,17 @@
     <string name="app_name">DevFest Nantes 2012</string>
     <string name="action_speakers">Speakers</string>
     <string name="action_sessions">Sessions</string>
-    <string name="action_agenda">Agenda</string>
+    <string name="action_infos">Infos Pratiques</string>
     <string name="action_about">A propos</string>
+    <!-- Sessions -->
     <string name="tab_android">Android</string>
     <string name="tab_web">Web</string>
     <string name="tab_cloud">Cloud / APIs</string>
-    <string name="tab_codelba">Ateliers</string>
+    <string name="tab_codelab">Ateliers</string>
+    <string name="no_sessions">Aucunes sessions</string>
+    <!-- Infos -->
+    <string name="tab_infos">Informations Pratiques</string>
+    <string name="tab_partenaires">Partenaires</string>
         
 
 </resources>

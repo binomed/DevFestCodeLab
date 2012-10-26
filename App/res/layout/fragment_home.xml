@@ -27,10 +27,10 @@
         android:text="@string/action_speakers" />
 
     <Button
-        android:id="@+id/home_btn_agenda"
+        android:id="@+id/home_btn_infos"
         style="@style/HomeButton"
-        android:drawableLeft="@drawable/ic_action_agenda"
-        android:text="@string/action_agenda" />
+        android:drawableLeft="@drawable/ic_action_infos"
+        android:text="@string/action_infos" />
 
     <Button
         android:id="@+id/home_btn_sessions"
