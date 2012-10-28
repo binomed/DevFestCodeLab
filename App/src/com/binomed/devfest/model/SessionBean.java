@@ -7,6 +7,10 @@ import android.os.Parcelable;
 
 public class SessionBean implements Serializable, Parcelable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String type;
 	private String urlImgType;
 	private String speakerId;
