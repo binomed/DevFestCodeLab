@@ -2,9 +2,12 @@ package com.binomed.devfest.model;
 
 import java.io.Serializable;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SessionBean implements Serializable, Parcelable {
 
 	/**
@@ -12,13 +15,18 @@ public class SessionBean implements Serializable, Parcelable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String type;
-	private String urlImgType;
-	private String speakerId;
+	private String imgType;
+	private String speaker;
 	private String level;
 	private String room;
 	private String lang;
 	private String title;
 	private String desc;
+
+	/*
+	 * public SessionBean(@JsonProperty("type") String type // , @JsonProperty("imgType") String imgType // , @JsonProperty("speaker") String speaker // , @JsonProperty("level") String level // , @JsonProperty("room") String room // , @JsonProperty("lang") String lang // , @JsonProperty("title")
+	 * String title // , @JsonProperty("desc") String desc // / ) { super(); this.type = type; this.imgType = imgType; this.speaker = speaker; this.level = level; this.room = room; this.lang = lang; this.title = title; this.desc = desc; }
+	 */
 
 	public String getType() {
 		return type;
@@ -28,20 +36,20 @@ public class SessionBean implements Serializable, Parcelable {
 		this.type = type;
 	}
 
-	public String getUrlImgType() {
-		return urlImgType;
+	public String getImgType() {
+		return imgType;
 	}
 
-	public void setUrlImgType(String urlImgType) {
-		this.urlImgType = urlImgType;
+	public void setImgType(String imgType) {
+		this.imgType = imgType;
 	}
 
-	public String getSpeakerId() {
-		return speakerId;
+	public String getSpeaker() {
+		return speaker;
 	}
 
-	public void setSpeakerId(String speakerId) {
-		this.speakerId = speakerId;
+	public void setSpeaker(String speaker) {
+		this.speaker = speaker;
 	}
 
 	public String getLevel() {

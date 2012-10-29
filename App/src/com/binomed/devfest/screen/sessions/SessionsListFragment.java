@@ -1,25 +1,26 @@
 package com.binomed.devfest.screen.sessions;
 
-import java.net.URI;
-
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
+import java.util.ArrayList;
 
 import roboguice.inject.InjectView;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.binomed.devfest.R;
 import com.binomed.devfest.adapters.list.SessionsAdapter;
 import com.binomed.devfest.model.SessionBean;
-import com.binomed.devfest.utils.DevFestCst;
+import com.binomed.devfest.screen.sessions.requests.SessionsJsonRequest;
+import com.binomed.devfest.service.DevFestSpiceService;
 import com.binomed.devfest.utils.RoboSherlockListFragment;
+import com.octo.android.robospice.SpiceManager;
+import com.octo.android.robospice.persistence.DurationInMillis;
+import com.octo.android.robospice.persistence.exception.SpiceException;
+import com.octo.android.robospice.request.listener.RequestListener;
 
 public class SessionsListFragment extends RoboSherlockListFragment {
 
@@ -29,6 +30,9 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 	TextView emptyView;
 
 	SessionsAdapter adapter;
+
+	private static final String SESSION_KEY = "sessions";
+	private SpiceManager spiceManager = new SpiceManager(DevFestSpiceService.class);
 
 	/** Called when the activity is first created. */
 	@Override
@@ -43,31 +47,44 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		list.setEmptyView(emptyView);
-		adapter = new SessionsAdapter();
+		adapter = new SessionsAdapter(getActivity());
+		list.setAdapter(adapter);
+		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
+		((SherlockFragmentActivity) getActivity()).setProgressBarVisibility(true);
 
-		AsyncTask<Void, Void, SessionBean[]> async = new AsyncTask<Void, Void, SessionBean[]>() {
+		spiceManager.execute(new SessionsJsonRequest(), SESSION_KEY, DurationInMillis.NEVER, new RequestListener<SessionBean[]>() {
 
 			@Override
-			protected SessionBean[] doInBackground(Void... params) {
-				try {
-					RestTemplate restTemplate = new RestTemplate();
-					restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-					String url = DevFestCst.MONGO_URL_SESSIONS;
-					return restTemplate.getForObject(new URI(url), SessionBean[].class);
-				} catch (Exception e) {
-					Log.e("SessionsListFragment", e.getMessage(), e);
+			public void onRequestFailure(SpiceException arg0) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onRequestSuccess(SessionBean[] result) {
+				ArrayList<SessionBean> liste = new ArrayList<SessionBean>();
+				for (SessionBean session : result) {
+					liste.add(session);
 				}
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(SessionBean[] result) {
-				adapter.setSessionList(result);
+				adapter.setSessionList(liste);
 				adapter.notifyDataSetChanged();
-			}
+				((SherlockFragmentActivity) getActivity()).setProgressBarVisibility(false);
 
-		};
-		async.execute();
+			}
+		});
+
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		spiceManager.start(getActivity());
+	}
+
+	@Override
+	public void onStop() {
+		spiceManager.shouldStop();
+		super.onStop();
 	}
 
 }

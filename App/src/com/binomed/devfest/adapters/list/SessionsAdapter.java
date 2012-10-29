@@ -1,5 +1,7 @@
 package com.binomed.devfest.adapters.list;
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +12,7 @@ import com.binomed.devfest.model.SessionBean;
 
 public class SessionsAdapter extends BaseAdapter {
 
-	private SessionBean[] sessionList;
+	private List<SessionBean> sessionList;
 
 	private Context context;
 
@@ -19,7 +21,7 @@ public class SessionsAdapter extends BaseAdapter {
 		this.context = context;
 	}
 
-	public void setSessionList(SessionBean[] sessionList) {
+	public void setSessionList(List<SessionBean> sessionList) {
 		this.sessionList = sessionList;
 	}
 
@@ -29,13 +31,13 @@ public class SessionsAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return sessionList != null ? sessionList.length : 0;
+		return sessionList != null ? sessionList.size() : 0;
 	}
 
 	@Override
 	public Object getItem(int index) {
-		if (sessionList != null && index < sessionList.length) {
-			return sessionList[index];
+		if (sessionList != null && index < sessionList.size()) {
+			return sessionList.get(index);
 		}
 		return null;
 	}
