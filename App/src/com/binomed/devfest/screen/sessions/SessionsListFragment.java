@@ -31,6 +31,12 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 
 	SessionsAdapter adapter;
 
+	private int typeUrl = -1;
+
+	public void setTypeUrl(int typeUrl) {
+		this.typeUrl = typeUrl;
+	}
+
 	private static final String SESSION_KEY = "sessions";
 	private SpiceManager spiceManager = new SpiceManager(DevFestSpiceService.class);
 
@@ -52,7 +58,7 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
 		((SherlockFragmentActivity) getActivity()).setProgressBarVisibility(true);
 
-		spiceManager.execute(new SessionsJsonRequest(), SESSION_KEY, DurationInMillis.NEVER, new RequestListener<SessionBean[]>() {
+		spiceManager.execute(new SessionsJsonRequest(typeUrl), SESSION_KEY, DurationInMillis.NEVER, new RequestListener<SessionBean[]>() {
 
 			@Override
 			public void onRequestFailure(SpiceException arg0) {

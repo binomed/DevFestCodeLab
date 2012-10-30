@@ -6,9 +6,9 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 
 import com.binomed.devfest.model.SessionBean;
+import com.binomed.devfest.screen.sessions.SessionView;
 
 public class SessionsAdapter extends BaseAdapter {
 
@@ -50,17 +50,17 @@ public class SessionsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int index, View view, ViewGroup parent) {
 		SessionBean session = (SessionBean) getItem(index);
-		TextView sessionView = null;
+		SessionView sessionView = null;
 		if (view != null) {
-			sessionView = (TextView) view;
+			sessionView = (SessionView) view;
 		} else {
-			sessionView = new TextView(context);
+			sessionView = new SessionView(context);
 		}
 
 		if (session != null) {
-			sessionView.setText(session.getTitle());
+			sessionView.setSession(session.getTitle(), session.getStartTime(), session.getEndTime());
 		} else {
-			sessionView.setText("");
+			sessionView.setSession("", "", "");
 		}
 		return sessionView;
 	}

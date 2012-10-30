@@ -11,7 +11,7 @@
     <string name="tab_web">Web</string>
     <string name="tab_cloud">Cloud / APIs</string>
     <string name="tab_codelab">Ateliers</string>
-    <string name="no_sessions">Aucunes sessions</string>
+    <string name="no_sessions">Chargement en cours</string>
     <!-- Infos -->
     <string name="tab_infos">Informations Pratiques</string>
     <string name="tab_partenaires">Partenaires</string>

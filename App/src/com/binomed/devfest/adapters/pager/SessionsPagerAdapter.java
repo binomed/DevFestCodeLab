@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.binomed.devfest.R;
 import com.binomed.devfest.screen.sessions.SessionsListFragment;
+import com.binomed.devfest.utils.DevFestCst;
 
 public class SessionsPagerAdapter extends FragmentPagerAdapter {// implements TitleProvider {
 
@@ -34,10 +35,19 @@ public class SessionsPagerAdapter extends FragmentPagerAdapter {// implements Ti
 
 	@Override
 	public Fragment getItem(int index) {
-		Fragment fragment = Fragment.instantiate(context, SessionsListFragment.class.getName());
+		SessionsListFragment fragment = (SessionsListFragment) Fragment.instantiate(context, SessionsListFragment.class.getName());
 		switch (index) {
 		case 0: {
-			// TODO
+			fragment.setTypeUrl(DevFestCst.TYPE_ANDROID);
+		}
+		case 1: {
+			fragment.setTypeUrl(DevFestCst.TYPE_WEB);
+		}
+		case 2: {
+			fragment.setTypeUrl(DevFestCst.TYPE_CLOUD);
+		}
+		case 3: {
+			fragment.setTypeUrl(DevFestCst.TYPE_CODELAB);
 		}
 		default: {
 		}

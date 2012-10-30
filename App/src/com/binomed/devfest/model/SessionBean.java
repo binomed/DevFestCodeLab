@@ -16,12 +16,14 @@ public class SessionBean implements Serializable, Parcelable {
 	private static final long serialVersionUID = 1L;
 	private String type;
 	private String imgType;
-	private String speaker;
+	private String[] speaker;
 	private String level;
 	private String room;
 	private String lang;
 	private String title;
 	private String desc;
+	private String startTime;
+	private String endTime;
 
 	/*
 	 * public SessionBean(@JsonProperty("type") String type // , @JsonProperty("imgType") String imgType // , @JsonProperty("speaker") String speaker // , @JsonProperty("level") String level // , @JsonProperty("room") String room // , @JsonProperty("lang") String lang // , @JsonProperty("title")
@@ -44,11 +46,11 @@ public class SessionBean implements Serializable, Parcelable {
 		this.imgType = imgType;
 	}
 
-	public String getSpeaker() {
+	public String[] getSpeaker() {
 		return speaker;
 	}
 
-	public void setSpeaker(String speaker) {
+	public void setSpeaker(String[] speaker) {
 		this.speaker = speaker;
 	}
 
@@ -90,6 +92,22 @@ public class SessionBean implements Serializable, Parcelable {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 	@Override
