@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SessionBean implements Serializable, Parcelable {
+public class SessionBean implements Serializable, Parcelable, Comparable<SessionBean> {
 
 	/**
 	 * 
@@ -120,6 +120,20 @@ public class SessionBean implements Serializable, Parcelable {
 	public void writeToParcel(Parcel arg0, int arg1) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public int compareTo(SessionBean another) {
+		if (another == null) {
+			return 1;
+		}
+		if (another.startTime == null) {
+			return 1;
+		}
+		if (startTime == null) {
+			return -1;
+		}
+		return startTime.compareTo(another.startTime);
 	}
 
 }

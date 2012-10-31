@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import com.binomed.devfest.R;
 import com.binomed.devfest.screen.sessions.SessionsListFragment;
@@ -36,18 +37,24 @@ public class SessionsPagerAdapter extends FragmentPagerAdapter {// implements Ti
 	@Override
 	public Fragment getItem(int index) {
 		SessionsListFragment fragment = (SessionsListFragment) Fragment.instantiate(context, SessionsListFragment.class.getName());
+		Log.i(TAG, "Instanciate Fragment : " + fragment);
+		Log.i(TAG, "Instanciate Fragment for index : " + index);
 		switch (index) {
 		case 0: {
 			fragment.setTypeUrl(DevFestCst.TYPE_ANDROID);
+			break;
 		}
 		case 1: {
 			fragment.setTypeUrl(DevFestCst.TYPE_WEB);
+			break;
 		}
 		case 2: {
 			fragment.setTypeUrl(DevFestCst.TYPE_CLOUD);
+			break;
 		}
 		case 3: {
 			fragment.setTypeUrl(DevFestCst.TYPE_CODELAB);
+			break;
 		}
 		default: {
 		}

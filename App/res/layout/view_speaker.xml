@@ -20,32 +20,22 @@
     >
 
     <ImageView
-        android:id="@+id/actionGoSession"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dip"
+        android:id="@+id/photoSpeaker"
+        android:layout_width="@dimen/size_imageview" 
+        android:layout_height="@dimen/size_imageview" 
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dip"
         android:src="@drawable/ic_action_go"
         android:layout_centerVertical="true"
         />
     <TextView
-        android:id="@+id/sessionName"
+        android:id="@+id/speakerDesc"
         android:layout_width="wrap_content" 
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/actionGoSession"
+        android:layout_toRightOf="@+id/photoSpeaker"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dip" 
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
-    <TextView
-        android:id="@+id/sessionHour"
-        android:layout_width="wrap_content" 
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/actionGoSession"
-        android:layout_below="@+id/sessionName"
-        android:layout_alignLeft="@+id/sessionName"
-        android:layout_marginLeft="10dip" 
+        android:layout_marginRight="10dip" 
         />
 
 </RelativeLayout>

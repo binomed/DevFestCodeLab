@@ -15,6 +15,15 @@
     <!-- Infos -->
     <string name="tab_infos">Informations Pratiques</string>
     <string name="tab_partenaires">Partenaires</string>
+    <!-- Infos pratiques -->
+    <string name="infos_place">Lieu</string>
+    <string name="infos_place_desc">Ecole Epitech Nantes 16b-18, rue Flandres Dunkerque, 44100 NANTES </string>
+    <string name="infos_car">S\'y rendre en voiture</string>
+    <string name="infos_car_desc">L\'école étant en plein centre ville, nous préconisons aux automobilistes de se garer sur un parking relais tram ou un parking payant.</string>
+    <string name="infos_sleep">Où dormir</string>
+    <string name="infos_sleep_desc">Hôtel Ibis Tour de bretagne \nRéservations : (+33)2 40 35 39 00 \nDistance de l\'évènement : 15 minutes à pied</string>
+    <string name="infos_after_party">After Party</string>
+    <string name="infos_after_party_desc">L\'after party se déroulera au bar le \'Melting Potes\'. Il s\'agit d\'une soirée SounderBox !  Les soirées sounderbox sont des soirées où la playlist de la soirée est décidée par les participants ! Un compte facebook est obligatoire pour utliser l\'application sounderbox. \n\nL\'entrée sera réservée aux participants du DevFest. La soirée commencera à 19h30.</string>
         
 
 </resources>

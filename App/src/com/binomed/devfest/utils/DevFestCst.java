@@ -18,12 +18,10 @@ public final class DevFestCst {
 	private static final String MONGO_URL_SESSIONS = MONGO_URL_PREFIX + MONGO_DATA_BASE_NAME + "/collections/" + MONGO_TABLE_SESSIONS + "?" + MONGO_URL_KEY;
 	public static final String MONGO_URL_SPEAKERS = MONGO_URL_PREFIX + MONGO_DATA_BASE_NAME + "/collections/" + MONGO_TABLE_SPEAKERS + "?" + MONGO_URL_KEY;
 	public static final String MONGO_URL_QUERY = MONGO_URL_SESSIONS + "&q={query}";
-	public static final String MONGO_URL_SESSIONS_ALL = MONGO_URL_SESSIONS + "&q={type:\"All\"}";
-	public static final String MONGO_URL_SESSIONS_ANDROID = MONGO_URL_SESSIONS + "&q={type:\"Android\"}";
-	public static final String MONGO_URL_SESSIONS_WEB = MONGO_URL_SESSIONS + "&q={type:\"Web\"}";
-	public static final String MONGO_URL_SESSIONS_CLOUD = MONGO_URL_SESSIONS + "&q={type:\"Cloud\"}";
-	public static final String MONGO_URL_SESSIONS_CODELAB = MONGO_URL_SESSIONS + "&q={type:\"CodeLab\"}";
-	// public static final String MONGO_URL_SESSIONS_CODELAB = MONGO_URL_SESSIONS + "&q={$or:[{\"type\":\"All\"},{\"type\":\"CodeLab\"}]}";
+	public static final String QUERY_ANDROID = "{$or:[{\"type\":\"All\"},{\"type\":\"Android\"}]}";
+	public static final String QUERY_WEB = "{$or:[{\"type\":\"All\"},{\"type\":\"Web\"}]}";
+	public static final String QUERY_CLOUD = "{$or:[{\"type\":\"All\"},{\"type\":\"Cloud\"}]}";
+	public static final String QUERY_CODELAB = "{$or:[{\"type\":\"All\"},{\"type\":\"CodeLab\"}]}";
 
 	// REQUEST CONSTANTS
 	public static final int TYPE_ANDROID = 1;

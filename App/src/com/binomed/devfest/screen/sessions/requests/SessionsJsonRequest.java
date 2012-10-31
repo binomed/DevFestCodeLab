@@ -24,30 +24,24 @@ public class SessionsJsonRequest extends RestContentRequest<SessionBean[]> {
 		Map<String, String> vars = new HashMap<String, String>();
 		switch (type) {
 		case DevFestCst.TYPE_ANDROID:
-			vars.put("query", "{type:\"Android\"}");
-			url = DevFestCst.MONGO_URL_SESSIONS_ANDROID;
+			vars.put("query", DevFestCst.QUERY_ANDROID);
 			break;
 		case DevFestCst.TYPE_CLOUD:
-			vars.put("query", "{type:\"Cloud\"}");
-			url = DevFestCst.MONGO_URL_SESSIONS_CLOUD;
-
+			vars.put("query", DevFestCst.QUERY_CLOUD);
 			break;
 		case DevFestCst.TYPE_WEB:
-			vars.put("query", "{type:\"Web\"}");
-			url = DevFestCst.MONGO_URL_SESSIONS_WEB;
-
+			vars.put("query", DevFestCst.QUERY_WEB);
 			break;
 		case DevFestCst.TYPE_CODELAB:
-			vars.put("query", "{type:\"CodeLab\"}");
-			url = DevFestCst.MONGO_URL_SESSIONS_CODELAB;
-
+			vars.put("query", DevFestCst.QUERY_CODELAB);
 			break;
 
 		default:
 			break;
 		}
-		Log.i("SessionsJsonRequest", "prepare to execute request : " + url);
 		url = DevFestCst.MONGO_URL_QUERY;
+		Log.i("SessionsJsonRequest", "prepare to execute request : " + url);
+		Log.i("SessionsJsonRequest", "prepare to execute request with params : " + vars.get("query"));
 		SessionBean[] res = getRestTemplate().getForObject(url, SessionBean[].class, vars);
 		Log.i("SessionsJsonRequest", "nb results found : " + res.length);
 		return res;

@@ -1,9 +1,11 @@
 package com.binomed.devfest.screen.sessions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import roboguice.inject.InjectView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,8 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 
 	SessionsAdapter adapter;
 
+	private static final String TAG = "SessionsListFragment";
+
 	private int typeUrl = -1;
 
 	public void setTypeUrl(int typeUrl) {
@@ -56,14 +60,15 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 		adapter = new SessionsAdapter(getActivity());
 		list.setAdapter(adapter);
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
-		((SherlockFragmentActivity) getActivity()).setProgressBarVisibility(true);
+		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(true);
 
-		spiceManager.execute(new SessionsJsonRequest(typeUrl), SESSION_KEY, DurationInMillis.NEVER, new RequestListener<SessionBean[]>() {
+		Log.i(TAG, "Call Service : " + this);
+		Log.i(TAG, "Call Service : " + SESSION_KEY + typeUrl);
+		spiceManager.execute(new SessionsJsonRequest(typeUrl), SESSION_KEY + typeUrl, DurationInMillis.NEVER, new RequestListener<SessionBean[]>() {
 
 			@Override
 			public void onRequestFailure(SpiceException arg0) {
-				// TODO Auto-generated method stub
-
+				Log.e(TAG, "Error calling services ", arg0);
 			}
 
 			@Override
@@ -72,9 +77,11 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 				for (SessionBean session : result) {
 					liste.add(session);
 				}
+				Collections.sort(liste);
+				Log.i(TAG, "Recieve List : " + liste.size());
 				adapter.setSessionList(liste);
 				adapter.notifyDataSetChanged();
-				((SherlockFragmentActivity) getActivity()).setProgressBarVisibility(false);
+				((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(false);
 
 			}
 		});

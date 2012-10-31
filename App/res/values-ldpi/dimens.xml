@@ -15,12 +15,5 @@
     limitations under the License.
 -->
 <resources>
-    <dimen name="actionbar_home_width">120dp</dimen>
-    <dimen name="shadow_width">15dp</dimen>
-    <dimen name="title_height">45dip</dimen>
-    <dimen name="text_size_small">13sp</dimen>
-    <dimen name="text_size_medium">15sp</dimen>
-    <dimen name="text_size_large">17sp</dimen>
-    <dimen name="size_map">200dip</dimen>
-    <dimen name="size_imageview">64dip</dimen>
+    <dimen name="size_imageview">31dip</dimen>
 </resources>
