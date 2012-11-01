@@ -29,6 +29,12 @@ public final class DevFestCst {
 	public static final int TYPE_CLOUD = 3;
 	public static final int TYPE_CODELAB = 4;
 
+	// PAGE INFOS INDEX
+	public static final int TYPE_PLACE = 0;
+	public static final int TYPE_CAR = 1;
+	public static final int TYPE_SLEEP = 2;
+	public static final int TYPE_AFTER_PARTY = 3;
+
 	// INTENTS
 	public static final String EXTRA_INTENT_TYPE_URL = "com.binomed.devfest.typeUrl";
 

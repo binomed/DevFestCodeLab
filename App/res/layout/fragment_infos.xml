@@ -22,31 +22,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+        
+  	 <!-- Epitech -->   
     <TextView
-        android:id="@+id/placeLbl"
+        android:id="@+id/lbl"
         android:text="@string/infos_place" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
      <ImageView 
-            android:id="@+id/separatorPlace"
+            android:id="@+id/separator"
             android:layout_width="fill_parent"
             android:layout_height="2dip"
             android:layout_marginTop="2dip"
-            android:layout_below="@+id/placeLbl"
+            android:layout_below="@+id/lbl"
             android:src="@drawable/horizontal_line"
             />
     <TextView
-        android:id="@+id/placeDesc"
+        android:id="@+id/desc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:text="@string/infos_place_desc" 
-        android:layout_below="@+id/separatorPlace"
+        android:layout_below="@+id/separator"
         android:paddingLeft="30dip"
-        android:layout_marginTop="10dip"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:layout_marginTop="10dip"/>
 
    <FrameLayout
-			    android:id="@+id/mapViewContainerPlace"
-                android:layout_below="@+id/placeDesc"
+			    android:id="@+id/mapViewContainer"
+                android:layout_below="@+id/desc"
                 android:layout_marginTop="20dip"
                 android:layout_marginLeft="50dip"
                 android:layout_marginRight="50dip"
@@ -55,6 +60,6 @@
 			    android:layout_width="@dimen/size_map"
 			    android:layout_height="@dimen/size_map"
                 />
-
+ 
 	</RelativeLayout>
 </ScrollView>
