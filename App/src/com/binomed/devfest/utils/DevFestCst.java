@@ -17,6 +17,7 @@ public final class DevFestCst {
 	private static final String MONGO_URL_KEY = "apiKey=" + MONGO_KEY;
 	private static final String MONGO_URL_SESSIONS = MONGO_URL_PREFIX + MONGO_DATA_BASE_NAME + "/collections/" + MONGO_TABLE_SESSIONS + "?" + MONGO_URL_KEY;
 	public static final String MONGO_URL_SPEAKERS = MONGO_URL_PREFIX + MONGO_DATA_BASE_NAME + "/collections/" + MONGO_TABLE_SPEAKERS + "?" + MONGO_URL_KEY;
+	public static final String MONGO_URL_SESSION_SPEAKERS = MONGO_URL_PREFIX + MONGO_DATA_BASE_NAME + "/collections/" + MONGO_TABLE_SPEAKERS + "?" + MONGO_URL_KEY + "&q={query}";
 	public static final String MONGO_URL_QUERY = MONGO_URL_SESSIONS + "&q={query}";
 	public static final String QUERY_ANDROID = "{$or:[{\"type\":\"All\"},{\"type\":\"Android\"}]}";
 	public static final String QUERY_WEB = "{$or:[{\"type\":\"All\"},{\"type\":\"Web\"}]}";
@@ -37,5 +38,6 @@ public final class DevFestCst {
 
 	// INTENTS
 	public static final String EXTRA_INTENT_TYPE_URL = "com.binomed.devfest.typeUrl";
+	public static final String EXTRA_INTENT_SESSION = "com.binomed.devfest.session";
 
 }

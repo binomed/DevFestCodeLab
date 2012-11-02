@@ -1,19 +1,42 @@
 package com.binomed.devfest.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class SessionBean implements Serializable, Parcelable, Comparable<SessionBean> {
+import com.binomed.devfest.utils.AbstractParcel;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class SessionBean extends AbstractParcel implements Parcelable, Comparable<SessionBean> {
+
+	public static final Parcelable.Creator<SessionBean> CREATOR = new Creator<SessionBean>() {
+
+		@Override
+		public SessionBean[] newArray(int size) {
+			return new SessionBean[size];
+		}
+
+		@Override
+		public SessionBean createFromParcel(Parcel source) {
+			return new SessionBean(source);
+		}
+	};
+
+	private static final int FIELD_TYPE = 0;
+	private static final int FIELD_IMG_TYPE = 1;
+	private static final int FIELD_SPEAKER = 2;
+	private static final int FIELD_LEVEL = 3;
+	private static final int FIELD_ROOM = 4;
+	private static final int FIELD_LANG = 5;
+	private static final int FIELD_TITLE = 6;
+	private static final int FIELD_DESC = 7;
+	private static final int FIELD_START_TIME = 8;
+	private static final int FIELD_END_TIME = 9;
+	private static final int FIELD_END = -1;
+
 	private String type;
 	private String imgType;
 	private String[] speaker;
@@ -25,10 +48,14 @@ public class SessionBean implements Serializable, Parcelable, Comparable<Session
 	private String startTime;
 	private String endTime;
 
-	/*
-	 * public SessionBean(@JsonProperty("type") String type // , @JsonProperty("imgType") String imgType // , @JsonProperty("speaker") String speaker // , @JsonProperty("level") String level // , @JsonProperty("room") String room // , @JsonProperty("lang") String lang // , @JsonProperty("title")
-	 * String title // , @JsonProperty("desc") String desc // / ) { super(); this.type = type; this.imgType = imgType; this.speaker = speaker; this.level = level; this.room = room; this.lang = lang; this.title = title; this.desc = desc; }
-	 */
+	public SessionBean() {
+		super();
+	}
+
+	public SessionBean(Parcel parcel) {
+		this();
+		readFromParcel(parcel);
+	}
 
 	public String getType() {
 		return type;
@@ -110,15 +137,113 @@ public class SessionBean implements Serializable, Parcelable, Comparable<Session
 		this.endTime = endTime;
 	}
 
+	private void readFromParcel(Parcel parcel) {
+		boolean end = false;
+		int code = 0;
+		while (!end) {
+			code = parcel.readInt();
+			switch (code) {
+			case FIELD_DESC: {
+				setDesc(readString(parcel));
+				break;
+			}
+			case FIELD_END_TIME: {
+				setEndTime(readString(parcel));
+				break;
+			}
+			case FIELD_START_TIME: {
+				setStartTime(readString(parcel));
+				break;
+			}
+			case FIELD_IMG_TYPE: {
+				setImgType(readString(parcel));
+				break;
+			}
+			case FIELD_LANG: {
+				setLang(readString(parcel));
+				break;
+			}
+			case FIELD_LEVEL: {
+				setLevel(readString(parcel));
+				break;
+			}
+			case FIELD_ROOM: {
+				setRoom(readString(parcel));
+				break;
+			}
+			case FIELD_TITLE: {
+				setTitle(readString(parcel));
+				break;
+			}
+			case FIELD_TYPE: {
+				setType(readString(parcel));
+				break;
+			}
+			case FIELD_SPEAKER: {
+				ArrayList<String> speakerList = new ArrayList<String>();
+				parcel.readStringList(speakerList);
+				setSpeaker(speakerList.toArray(new String[speakerList.size()]));
+				break;
+			}
+			case FIELD_END: {
+				end = true;
+				break;
+			}
+			default:
+				break;
+			}
+		}
+
+	}
+
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void writeToParcel(Parcel arg0, int arg1) {
-		// TODO Auto-generated method stub
+	public void writeToParcel(Parcel dest, int flags) {
+		if (getDesc() != null) {
+			dest.writeInt(FIELD_DESC);
+			writeString(dest, getDesc());
+		}
+		if (getEndTime() != null) {
+			dest.writeInt(FIELD_END_TIME);
+			writeString(dest, getEndTime());
+		}
+		if (getStartTime() != null) {
+			dest.writeInt(FIELD_START_TIME);
+			writeString(dest, getStartTime());
+		}
+		if (getImgType() != null) {
+			dest.writeInt(FIELD_IMG_TYPE);
+			writeString(dest, getImgType());
+		}
+		if (getLang() != null) {
+			dest.writeInt(FIELD_LANG);
+			writeString(dest, getLang());
+		}
+		if (getLevel() != null) {
+			dest.writeInt(FIELD_LEVEL);
+			writeString(dest, getLevel());
+		}
+		if (getRoom() != null) {
+			dest.writeInt(FIELD_ROOM);
+			writeString(dest, getRoom());
+		}
+		if (getTitle() != null) {
+			dest.writeInt(FIELD_TITLE);
+			writeString(dest, getTitle());
+		}
+		if (getType() != null) {
+			dest.writeInt(FIELD_TYPE);
+			writeString(dest, getType());
+		}
+		if (getSpeaker() != null && getSpeaker().length > 0) {
+			dest.writeInt(FIELD_SPEAKER);
+			dest.writeStringArray(getSpeaker());
+		}
+		dest.writeInt(FIELD_END);
 
 	}
 

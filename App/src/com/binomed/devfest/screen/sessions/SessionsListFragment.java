@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +26,7 @@ import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-public class SessionsListFragment extends RoboSherlockListFragment {
+public class SessionsListFragment extends RoboSherlockListFragment implements OnItemClickListener {
 
 	@InjectView(android.R.id.list)
 	ListView list;
@@ -59,16 +61,19 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 		list.setEmptyView(emptyView);
 		adapter = new SessionsAdapter(getActivity());
 		list.setAdapter(adapter);
+		list.setOnItemClickListener(this);
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(true);
 
 		Log.i(TAG, "Call Service : " + this);
 		Log.i(TAG, "Call Service : " + SESSION_KEY + typeUrl);
+		emptyView.setText(R.string.no_sessions);
 		spiceManager.execute(new SessionsJsonRequest(typeUrl), SESSION_KEY + typeUrl, DurationInMillis.NEVER, new RequestListener<SessionBean[]>() {
 
 			@Override
 			public void onRequestFailure(SpiceException arg0) {
 				Log.e(TAG, "Error calling services ", arg0);
+				emptyView.setText(R.string.error_loading);
 			}
 
 			@Override
@@ -98,6 +103,11 @@ public class SessionsListFragment extends RoboSherlockListFragment {
 	public void onStop() {
 		spiceManager.shouldStop();
 		super.onStop();
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
 	}
 
 }

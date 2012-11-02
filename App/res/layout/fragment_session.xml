@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/sessionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="22dp"
+        android:text="Titre"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageView
+        android:id="@+id/imgType"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_alignLeft="@+id/sessionTitle"
+        android:layout_below="@+id/sessionTitle"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/android" />
+
+    <TextView
+        android:id="@+id/lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dip"
+        android:layout_alignTop="@+id/imgType"
+        android:layout_toRightOf="@+id/imgType"
+        android:text="fr"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/lblHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgType"
+        android:layout_below="@+id/imgType"
+        android:layout_marginTop="18dp"
+        android:text="@string/hour"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/lblLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgType"
+        android:layout_below="@+id/lblHour"
+        android:text="@string/level"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+     <TextView
+        android:id="@+id/lblRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgType"
+        android:layout_below="@+id/lblLevel"
+        android:text="@string/room"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+      <TextView
+        android:id="@+id/hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lblHour"
+        android:layout_alignBottom="@+id/lblHour"
+        android:layout_alignLeft="@+id/lang"
+        android:text="heure"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lblRoom"
+        android:layout_alignBottom="@+id/lblRoom"
+        android:layout_alignLeft="@+id/lang"
+        android:text="Les machines"
+        android:textAppearance="?android:attr/textAppearanceMedium" /> 
+     
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lblLevel"
+        android:layout_alignBottom="@+id/lblLevel"
+        android:layout_alignLeft="@+id/lang"
+        android:text="101"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+   
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lblRoom"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/horizontal_line" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Description" />
+
+    <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/desc"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/horizontal_line" />
+
+    <ListView
+        android:id="@+id/listSpeaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ImageView01"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        tools:listitem="@layout/view_speaker" >
+    </ListView>
+     <TextView
+        android:id="@android:id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_below="@+id/ImageView01"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:text="@string/no_sessions" />
+
+
+</RelativeLayout> <!-- </ScrollView> -->

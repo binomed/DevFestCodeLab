@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".screen.speakers.SpeakersActivity"></activity>
+        <activity android:name=".screen.sessions.SessionActivity"></activity>
         <activity android:name=".utils.InnerMapActivity"></activity>
         <service android:name=".service.DevFestSpiceService" android:exported="false"></service>
 

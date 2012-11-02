@@ -15,18 +15,16 @@ public class SpeakersAdapter extends BaseAdapter {
 	private List<SpeakerBean> speakerList;
 
 	private Context context;
+	private final boolean full;
 
-	public SpeakersAdapter(Context context) {
+	public SpeakersAdapter(Context context, boolean full) {
 		super();
 		this.context = context;
+		this.full = full;
 	}
 
 	public void setSpeakersList(List<SpeakerBean> sessionList) {
 		this.speakerList = sessionList;
-	}
-
-	public SpeakersAdapter() {
-		super();
 	}
 
 	@Override
@@ -58,7 +56,7 @@ public class SpeakersAdapter extends BaseAdapter {
 		}
 
 		if (speaker != null) {
-			speakerView.setSpeaker(speaker.getPhotoUrl(), speaker.getDesc());
+			speakerView.setSpeaker(speaker.getPhotoUrl(), full ? speaker.getDesc() : speaker.getName());
 		} else {
 			speakerView.setSpeaker("", "");
 		}

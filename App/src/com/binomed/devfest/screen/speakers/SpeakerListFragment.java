@@ -50,16 +50,18 @@ public class SpeakerListFragment extends RoboSherlockListFragment {
 		super.onViewCreated(view, savedInstanceState);
 		list.setEmptyView(emptyView);
 
-		adapter = new SpeakersAdapter(getActivity());
+		adapter = new SpeakersAdapter(getActivity(), true);
 		list.setAdapter(adapter);
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(true);
 
+		emptyView.setText(R.string.no_sessions);
 		spiceManager.execute(new SpeakersJsonRequest(), SPEAKER_KEY, DurationInMillis.NEVER, new RequestListener<SpeakerBean[]>() {
 
 			@Override
 			public void onRequestFailure(SpiceException arg0) {
 				Log.e(TAG, "Error calling services ", arg0);
+				emptyView.setText(R.string.error_loading);
 			}
 
 			@Override

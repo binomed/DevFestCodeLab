@@ -25,13 +25,13 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.binomed.devfest.R;
 import com.binomed.devfest.utils.DevFestCst;
 import com.binomed.devfest.utils.InnerMapActivity;
-import com.binomed.devfest.utils.LocalActivityManagerFragment;
+import com.binomed.devfest.utils.InnerActivityManagerFragment;
 import com.cyrilmottier.polaris.Annotation;
 import com.cyrilmottier.polaris.PolarisMapView;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapController;
 
-public class InfosFragment extends LocalActivityManagerFragment {
+public class InfosFragment extends InnerActivityManagerFragment {
 
 	PolarisMapView mapView;
 	MapController mapController;
@@ -116,7 +116,7 @@ public class InfosFragment extends LocalActivityManagerFragment {
 	private void manageMapView(View mainView) {
 
 		Intent intent = new Intent(getActivity(), InnerMapActivity.class);
-		final Window w = getLocalActivityManager().startActivity(ACTIVITY_TAG, intent);
+		final Window w = getLocalActivityManager().startActivity(ACTIVITY_TAG + type, intent);
 		innerMapView = w != null ? w.getDecorView() : null;
 
 		if (innerMapView != null) {
@@ -136,7 +136,7 @@ public class InfosFragment extends LocalActivityManagerFragment {
 		mapViewContainer.addView(innerMapView);
 
 		// We retrieve the mapView
-		InnerMapActivity activityMap = (InnerMapActivity) getLocalActivityManager().getActivity(ACTIVITY_TAG);
+		InnerMapActivity activityMap = (InnerMapActivity) getLocalActivityManager().getActivity(ACTIVITY_TAG + type);
 		if (activityMap != null) {
 			mapView = activityMap.getMapView();
 			mapController = mapView.getController();

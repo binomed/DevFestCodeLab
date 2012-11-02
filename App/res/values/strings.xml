@@ -6,12 +6,13 @@
     <string name="action_sessions">Sessions</string>
     <string name="action_infos">Infos Pratiques</string>
     <string name="action_about">A propos</string>
+    <string name="error_loading">Erreur pendant le chargement</string>
+    <string name="no_sessions">Chargement en cours</string>
     <!-- Sessions -->
     <string name="tab_android">Android</string>
     <string name="tab_web">Web</string>
     <string name="tab_cloud">Cloud / APIs</string>
     <string name="tab_codelab">Ateliers</string>
-    <string name="no_sessions">Chargement en cours</string>
     <!-- Infos -->
     <string name="tab_place">Lieu</string>
     <string name="tab_car">Comment Venir ? </string>
@@ -33,6 +34,22 @@
     <string name="infos_after_party_desc">L\'after party se déroulera au bar le \'Melting Potes\'. Il s\'agit d\'une soirée SounderBox !  Les soirées sounderbox sont des soirées où la playlist de la soirée est décidée par les participants ! Un compte facebook est obligatoire pour utliser l\'application sounderbox. \n\nL\'entrée sera réservée aux participants du DevFest. La soirée commencera à 19h30.</string>
     <string name="infos_after_party_name">Melting Potes</string>
     <string name="infos_after_party_place">26 Boulevard de la Prairie au Duc, 44200 Nantes, France</string>
+    <!-- Partenaires -->
+    <string name="partner_premium">Premium</string>
+    <string name="partner_gold">Gold</string>
+    <string name="partner_silver">Silver</string>
+    <string name="partner_school">Ecole</string>
+    <string name="partner_google">Google</string>
+    <string name="partner_genymobile">GenyMobile</string>
+    <string name="partner_sqli">SQLI</string>
+    <string name="partner_sii">SII</string>
+    <string name="partner_zenika">Zenika</string>
+    <string name="partner_softeam">Softeam</string>
+    <string name="partner_epitech">Epitech</string>
+    <string name="room">"Salle : "</string>
+    <string name="level">Niveau</string>
+    <string name="hour">Horaires</string>
+    
     
         
 

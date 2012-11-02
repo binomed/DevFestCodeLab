@@ -1,19 +1,47 @@
 package com.binomed.devfest.model;
 
-import java.io.Serializable;
-
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.binomed.devfest.utils.AbstractParcel;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SpeakerBean implements Serializable, Parcelable, Comparable<SpeakerBean> {
+public class SpeakerBean extends AbstractParcel implements Parcelable, Comparable<SpeakerBean> {
+
+	public static final Parcelable.Creator<SpeakerBean> CREATOR = new Creator<SpeakerBean>() {
+
+		@Override
+		public SpeakerBean[] newArray(int size) {
+			return new SpeakerBean[size];
+		}
+
+		@Override
+		public SpeakerBean createFromParcel(Parcel source) {
+			return new SpeakerBean(source);
+		}
+	};
+
+	private static final int FIELD_NAME = 0;
+	private static final int FIELD_PHOTO_URL = 1;
+	private static final int FIELD_GPLUS_URL = 2;
+	private static final int FIELD_DESC = 3;
+	private static final int FIELD_END = -1;
 
 	private String name;
 	private String photoUrl;
 	private String gPlusUrl;
 	private String desc;
+
+	public SpeakerBean() {
+		super();
+	}
+
+	public SpeakerBean(Parcel parcel) {
+		this();
+		readFromParcel(parcel);
+	}
 
 	public String getName() {
 		return name;
@@ -47,15 +75,63 @@ public class SpeakerBean implements Serializable, Parcelable, Comparable<Speaker
 		this.desc = desc;
 	}
 
+	private void readFromParcel(Parcel parcel) {
+		boolean end = false;
+		int code = 0;
+		while (!end) {
+			code = parcel.readInt();
+			switch (code) {
+			case FIELD_DESC: {
+				setDesc(readString(parcel));
+				break;
+			}
+			case FIELD_GPLUS_URL: {
+				setgPlusUrl(readString(parcel));
+				break;
+			}
+			case FIELD_NAME: {
+				setName(readString(parcel));
+				break;
+			}
+			case FIELD_PHOTO_URL: {
+				setPhotoUrl(readString(parcel));
+				break;
+			}
+			case FIELD_END: {
+				end = true;
+				break;
+			}
+			default:
+				break;
+			}
+		}
+
+	}
+
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
+		if (getDesc() != null) {
+			dest.writeInt(FIELD_DESC);
+			writeString(dest, getDesc());
+		}
+		if (getgPlusUrl() != null) {
+			dest.writeInt(FIELD_GPLUS_URL);
+			writeString(dest, getgPlusUrl());
+		}
+		if (getName() != null) {
+			dest.writeInt(FIELD_NAME);
+			writeString(dest, getName());
+		}
+		if (getPhotoUrl() != null) {
+			dest.writeInt(FIELD_PHOTO_URL);
+			writeString(dest, getPhotoUrl());
+		}
+		dest.writeInt(FIELD_END);
 
 	}
 
