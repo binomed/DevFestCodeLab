@@ -58,9 +58,9 @@ public class SessionsAdapter extends BaseAdapter {
 		}
 
 		if (session != null) {
-			sessionView.setSession(session.getTitle(), session.getStartTime(), session.getEndTime());
+			sessionView.setSession(session);
 		} else {
-			sessionView.setSession("", "", "");
+			sessionView.setSession(null);
 		}
 		return sessionView;
 	}

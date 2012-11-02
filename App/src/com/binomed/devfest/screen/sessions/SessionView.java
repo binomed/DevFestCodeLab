@@ -6,11 +6,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.binomed.devfest.R;
+import com.binomed.devfest.model.SessionBean;
 
 public class SessionView extends RelativeLayout {
 
 	TextView sessionName;
 	TextView sessionHour;
+	SessionBean session;
+
+	public SessionBean getSession() {
+		return session;
+	}
 
 	public SessionView(Context context) {
 		super(context);
@@ -22,9 +28,13 @@ public class SessionView extends RelativeLayout {
 
 	}
 
-	public void setSession(String sessionName, String startTime, String endTime) {
-		this.sessionName.setText(sessionName);
-		this.sessionHour.setText(startTime + " - " + endTime);
+	public void setSession(SessionBean session) {
+		this.session = session;
+		if (session == null) {
+			return;
+		}
+		this.sessionName.setText(session.getTitle());
+		this.sessionHour.setText(session.getStartTime() + " - " + session.getEndTime());
 
 	}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import roboguice.inject.InjectView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.binomed.devfest.adapters.list.SessionsAdapter;
 import com.binomed.devfest.model.SessionBean;
 import com.binomed.devfest.screen.sessions.requests.SessionsJsonRequest;
 import com.binomed.devfest.service.DevFestSpiceService;
+import com.binomed.devfest.utils.DevFestCst;
 import com.binomed.devfest.utils.RoboSherlockListFragment;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
@@ -106,8 +108,12 @@ public class SessionsListFragment extends RoboSherlockListFragment implements On
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		if (view instanceof SessionView) {
+			Intent intent = new Intent(getActivity(), SessionActivity.class);
+			intent.putExtra(DevFestCst.EXTRA_INTENT_SESSION, ((SessionView) view).getSession());
+			startActivity(intent);
+		}
 	}
 
 }

@@ -77,15 +77,13 @@ public class SessionFragment extends RoboSherlockFragment {
 
 		// Fill Informations
 		if (session.getImgType() != null) {
-			UrlImageViewHelper.setUrlDrawable(imgType, session.getImgType(), android.R.drawable.spinner_background);
-		} else {
-			imgType.setVisibility(View.GONE);
+			UrlImageViewHelper.setUrlDrawable(imgType, session.getImgType(), R.drawable.ic_launcher);
 		}
 		sessionTitle.setText(session.getTitle());
 		if (session.getLang() != null) {
 			lang.setText(session.getLang());
 		} else {
-			lang.setVisibility(View.GONE);
+			lang.setText("");
 		}
 		if (session.getLevel() != null) {
 			level.setText(session.getLevel());
