@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2012 Binomed (http://blog.binomed.fr)
+ *
+ * Licensed under the Eclipse Public License - v 1.0;
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.eclipse.org/legal/epl-v10.html
+ *
+ * THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC 
+ * LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM 
+ * CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+ */
 package com.binomed.devfest.screen.sessions;
 
 import java.util.ArrayList;
@@ -20,14 +33,24 @@ import com.binomed.devfest.model.SessionBean;
 import com.binomed.devfest.model.SpeakerBean;
 import com.binomed.devfest.screen.sessions.requests.SessionSpeakersJsonRequest;
 import com.binomed.devfest.service.DevFestSpiceService;
-import com.binomed.devfest.utils.RoboSherlockFragment;
+import com.binomed.devfest.utils.activities.AbstractRoboSherlockFragment;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
 
-public class SessionFragment extends RoboSherlockFragment {
+/**
+ * @author JefBinomed
+ * 
+ *         The fragment for a session
+ * 
+ */
+public class SessionFragment extends AbstractRoboSherlockFragment {
+
+	/*
+	 * Robo Guice vars
+	 */
 
 	@InjectView(R.id.listSpeaker)
 	ListView list;
@@ -48,8 +71,16 @@ public class SessionFragment extends RoboSherlockFragment {
 	@InjectView(R.id.imgType)
 	ImageView imgType;
 
-	private SpeakersAdapter adapter;
+	/*
+	 * Static vars
+	 */
 	private static final String TAG = "SessionFragment";
+
+	/*
+	 * Instance vars
+	 */
+
+	private SpeakersAdapter adapter;
 	private SessionBean session;
 	private SpiceManager spiceManager = new SpiceManager(DevFestSpiceService.class);
 
@@ -66,9 +97,17 @@ public class SessionFragment extends RoboSherlockFragment {
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.binomed.devfest.utils.activities.AbstractRoboSherlockFragment#onViewCreated(android.view.View, android.os.Bundle)
+	 */
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+
+		// We do all stuf here because roboguice only injects views here
+
 		list.setEmptyView(emptyView);
 		adapter = new SpeakersAdapter(getActivity(), false);
 		list.setAdapter(adapter);
@@ -106,6 +145,7 @@ public class SessionFragment extends RoboSherlockFragment {
 			desc.setVisibility(View.GONE);
 		}
 
+		// We call the robospice service
 		spiceManager.execute(new SessionSpeakersJsonRequest(session.getSpeaker())//
 				, session.getTitle().trim() //
 				, DurationInMillis.NEVER //
@@ -114,6 +154,7 @@ public class SessionFragment extends RoboSherlockFragment {
 					@Override
 					public void onRequestFailure(SpiceException arg0) {
 						Log.e(TAG, "Error calling services ", arg0);
+						emptyView.setText(R.string.error_loading);
 					}
 
 					@Override
@@ -123,7 +164,9 @@ public class SessionFragment extends RoboSherlockFragment {
 							liste.add(speaker);
 						}
 						Collections.sort(liste);
-						Log.i(TAG, "Recieve List : " + liste.size());
+						if (liste.size() == 0) {
+							emptyView.setText(R.string.no_speaker);
+						}
 						adapter.setSpeakersList(liste);
 						adapter.notifyDataSetChanged();
 						((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(false);

@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2012 Binomed (http://blog.binomed.fr)
+ *
+ * Licensed under the Eclipse Public License - v 1.0;
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.eclipse.org/legal/epl-v10.html
+ *
+ * THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC 
+ * LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM 
+ * CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+ */
 package com.binomed.devfest.screen;
 
 import roboguice.inject.InjectView;
@@ -13,10 +26,16 @@ import com.binomed.devfest.R;
 import com.binomed.devfest.screen.infos.InfosActivity;
 import com.binomed.devfest.screen.sessions.SessionsActivity;
 import com.binomed.devfest.screen.speakers.SpeakersActivity;
-import com.binomed.devfest.utils.RoboSherlockFragment;
-import com.binomed.devfest.utils.SherlockFragmentSlidingActivity;
+import com.binomed.devfest.utils.activities.AbstractRoboSherlockFragment;
+import com.binomed.devfest.utils.activities.AbstractSherlockFragmentSlidingActivity;
 
-public class HomeFragment extends RoboSherlockFragment implements OnClickListener {
+/**
+ * @author JefBinomed
+ * 
+ *         Fragment for sliding menu
+ * 
+ */
+public class HomeFragment extends AbstractRoboSherlockFragment implements OnClickListener {
 
 	@InjectView(R.id.home_btn_speakers)
 	Button speakersBtn;
@@ -35,6 +54,7 @@ public class HomeFragment extends RoboSherlockFragment implements OnClickListene
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		// We add manualy the listener because the onclik bind offers by android refers to activity and not fragment...
 		speakersBtn.setOnClickListener(this);
 		infosBtn.setOnClickListener(this);
 		sessionsBtn.setOnClickListener(this);
@@ -51,7 +71,7 @@ public class HomeFragment extends RoboSherlockFragment implements OnClickListene
 
 	@Override
 	public void onClick(View v) {
-		((SherlockFragmentSlidingActivity) getActivity()).toggle();
+		((AbstractSherlockFragmentSlidingActivity) getActivity()).toggle();
 		int id = v.getId();
 		switch (id) {
 		case R.id.home_btn_speakers: {

@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml 
+version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright (C) 2012 Binomed (http://blog.binomed.fr)
+ *
+ * Licensed under the Eclipse Public License - v 1.0;
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.eclipse.org/legal/epl-v10.html
+ *
+ * THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC 
+ * LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM 
+ * CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+ */ 
+ -->
 <resources>
 
     <string name="app_name">DevFest Nantes 2012</string>
@@ -8,6 +24,7 @@
     <string name="action_about">A propos</string>
     <string name="error_loading">Erreur pendant le chargement</string>
     <string name="no_sessions">Chargement en cours</string>
+    <string name="no_speaker">Aucun speaker</string>
     <!-- Sessions -->
     <string name="tab_android">Android</string>
     <string name="tab_web">Web</string>
@@ -49,6 +66,9 @@
     <string name="room">"Salle : "</string>
     <string name="level">Niveau</string>
     <string name="hour">Horaires</string>
+    <!-- About -->
+    <string name="about_content">DevFest Code Lab V1.0 \n Ecrit par Binomed avec le concours de SQLI Nantes. Application disponible sur Github</string>
+    <string name="about_title">A propos</string>
     
     
         

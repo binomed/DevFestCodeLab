@@ -1,3 +1,16 @@
+/*
+ * Copyright (C) 2012 Binomed (http://blog.binomed.fr)
+ *
+ * Licensed under the Eclipse Public License - v 1.0;
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.eclipse.org/legal/epl-v10.html
+ *
+ * THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC 
+ * LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM 
+ * CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+ */
 package com.binomed.devfest.adapters.pager;
 
 import roboguice.RoboGuice;
@@ -11,13 +24,29 @@ import com.binomed.devfest.R;
 import com.binomed.devfest.screen.infos.InfosFragment;
 import com.binomed.devfest.screen.infos.PartnairesFragment;
 
+/**
+ * @author JefBinomed
+ * 
+ *         PageAdapter for the viewPager informations
+ * 
+ */
 public class InfosPagerAdapter extends FragmentPagerAdapter {// implements TitleProvider {
 
+	/*
+	 * Static vars
+	 */
 	private static final String TAG = "InfosPageAdapter";
-
 	private static final int NB_PAGES = 5;
 
+	/*
+	 * Instance vars
+	 */
+
 	private final Context context;
+
+	/*
+	 * RoboGuice vars
+	 */
 	@InjectResource(R.string.tab_place)
 	String placeTabName;
 	@InjectResource(R.string.tab_car)
