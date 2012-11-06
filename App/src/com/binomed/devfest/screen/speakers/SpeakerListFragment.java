@@ -83,8 +83,8 @@ public class SpeakerListFragment extends AbstractRoboSherlockListFragment {
 
 		adapter = new SpeakersAdapter(getActivity(), true);
 		list.setAdapter(adapter);
-		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
-		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(true);
+		((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminate(true);
+		((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(true);
 		emptyView.setText(R.string.no_sessions);
 
 		// Execute RoboSpice service
@@ -105,7 +105,7 @@ public class SpeakerListFragment extends AbstractRoboSherlockListFragment {
 				Collections.sort(liste);
 				adapter.setSpeakersList(liste);
 				adapter.notifyDataSetChanged();
-				((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(false);
+				((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
 
 			}
 		});

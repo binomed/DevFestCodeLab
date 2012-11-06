@@ -111,8 +111,8 @@ public class SessionFragment extends AbstractRoboSherlockFragment {
 		list.setEmptyView(emptyView);
 		adapter = new SpeakersAdapter(getActivity(), false);
 		list.setAdapter(adapter);
-		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
-		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(true);
+		((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminate(true);
+		((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(true);
 
 		// Fill Informations
 		if (session.getImgType() != null) {
@@ -169,7 +169,7 @@ public class SessionFragment extends AbstractRoboSherlockFragment {
 						}
 						adapter.setSpeakersList(liste);
 						adapter.notifyDataSetChanged();
-						((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(false);
+						((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
 
 					}
 				});

@@ -17,6 +17,7 @@ import android.os.Bundle;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Window;
 import com.binomed.devfest.R;
 import com.binomed.devfest.screen.HomeFragment;
 import com.binomed.devfest.screen.about.AboutDialogFragment;
@@ -37,6 +38,7 @@ public abstract class AbstractDevFestSlidingActivity extends AbstractSherlockFra
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
 
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setSlidingActionBarEnabled(true);
 
 	}
