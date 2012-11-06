@@ -99,8 +99,8 @@ public class SessionsListFragment extends AbstractRoboSherlockListFragment imple
 		adapter = new SessionsAdapter(getActivity());
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(this);
-		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
-		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(true);
+		((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminate(true);
+		((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(true);
 		emptyView.setText(R.string.no_sessions);
 
 		// Call RoboSpice service
@@ -121,7 +121,7 @@ public class SessionsListFragment extends AbstractRoboSherlockListFragment imple
 				Collections.sort(liste);
 				adapter.setSessionList(liste);
 				adapter.notifyDataSetChanged();
-				((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(false);
+				((SherlockFragmentActivity) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
 
 			}
 		});

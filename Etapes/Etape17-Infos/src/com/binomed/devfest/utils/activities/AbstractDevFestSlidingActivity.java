@@ -52,8 +52,8 @@ public abstract class AbstractDevFestSlidingActivity extends AbstractSherlockFra
 			toggle();
 			return true;
 		case ITEM_ABOUT:
-			//AboutDialogFragment aboutFragment = new AboutDialogFragment();
-			//aboutFragment.show(getSupportFragmentManager(), "ABOUT");
+			AboutDialogFragment aboutFragment = new AboutDialogFragment();
+			aboutFragment.show(getSupportFragmentManager(), "ABOUT");
 
 		default:
 			return super.onMenuItemSelected(featureId, item);
