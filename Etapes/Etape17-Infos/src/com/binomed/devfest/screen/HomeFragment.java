@@ -23,9 +23,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.binomed.devfest.R;
-//import com.binomed.devfest.screen.infos.InfosActivity;
-//import com.binomed.devfest.screen.sessions.SessionsActivity;
-//import com.binomed.devfest.screen.speakers.SpeakersActivity;
+import com.binomed.devfest.screen.infos.InfosActivity;
+import com.binomed.devfest.screen.sessions.SessionsActivity;
+import com.binomed.devfest.screen.speakers.SpeakersActivity;
 import com.binomed.devfest.utils.activities.AbstractRoboSherlockFragment;
 import com.binomed.devfest.utils.activities.AbstractSherlockFragmentSlidingActivity;
 
@@ -75,21 +75,21 @@ public class HomeFragment extends AbstractRoboSherlockFragment implements OnClic
 		int id = v.getId();
 		switch (id) {
 		case R.id.home_btn_speakers: {
-//			Intent intent = new Intent(getActivity(), SpeakersActivity.class);
-//			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//			startActivity(intent);
+			Intent intent = new Intent(getActivity(), SpeakersActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			startActivity(intent);
 			break;
 		}
 		case R.id.home_btn_infos: {
-//			Intent intent = new Intent(getActivity(), InfosActivity.class);
-//			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//			startActivity(intent);
+			Intent intent = new Intent(getActivity(), InfosActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			startActivity(intent);
 			break;
 		}
 		case R.id.home_btn_sessions: {
-//			Intent intent = new Intent(getActivity(), SessionsActivity.class);
-//			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//			startActivity(intent);
+			Intent intent = new Intent(getActivity(), SessionsActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			startActivity(intent);
 			break;
 		}
 		default:
