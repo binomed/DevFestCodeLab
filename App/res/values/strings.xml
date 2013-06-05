@@ -17,7 +17,7 @@ version="1.0" encoding="utf-8"?>
  -->
 <resources>
 
-    <string name="app_name">DevFest Nantes 2012</string>
+    <string name="app_name">BreizhCamp Rennes 2013</string>
     <string name="action_speakers">Speakers</string>
     <string name="action_sessions">Sessions</string>
     <string name="action_infos">Infos Pratiques</string>
@@ -26,10 +26,17 @@ version="1.0" encoding="utf-8"?>
     <string name="no_sessions">Chargement en cours</string>
     <string name="no_speaker">Aucun speaker</string>
     <!-- Sessions -->
-    <string name="tab_android">Android</string>
-    <string name="tab_web">Web</string>
+    <string name="title_session">Sessions</string>
+    <string name="title_speakers">Speakers</string>
+    <string name="tab_web">Web / Mobile</string>
     <string name="tab_cloud">Cloud / APIs</string>
-    <string name="tab_codelab">Ateliers</string>
+    <string name="tab_agilite">Agilité</string>
+    <string name="tab_devops">Devops</string>
+    <string name="tab_extreme">eXtreme</string>
+    <string name="tab_langages">Langages</string>
+    <string name="tab_decouverte">Découverte</string>
+    <string name="tab_tooling">Tooling</string>
+    <string name="tab_keynote">Keynote</string>
     <!-- Infos -->
     <string name="tab_place">Lieu</string>
     <string name="tab_car">Comment Venir ? </string>
@@ -70,7 +77,10 @@ version="1.0" encoding="utf-8"?>
     <string name="about_content">DevFest Code Lab V1.0 \n Ecrit par Binomed avec le concours de SQLI Nantes. Application disponible sur Github</string>
     <string name="about_title">A propos</string>
     
-    
+    <string-array name="days">
+        <item >day 1</item>
+        <item >day 2</item>
+    </string-array>
         
 
 </resources>
