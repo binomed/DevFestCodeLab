@@ -17,7 +17,7 @@ import android.os.Bundle;
 
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.utils.BreizhCampCst;
-import com.binomed.breizhcamp.utils.activities.AbstractDevFestRoboActivity;
+import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockActivity;
 
 import fr.ybonnel.breizhcamppdf.model.Talk;
 
@@ -27,7 +27,7 @@ import fr.ybonnel.breizhcamppdf.model.Talk;
  *         Simple activity hosting the fragment for sessions
  * 
  */
-public class SessionActivity extends AbstractDevFestRoboActivity {
+public class SessionActivity extends AbstractRoboSherlockActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

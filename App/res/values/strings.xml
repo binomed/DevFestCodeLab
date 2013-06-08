@@ -25,7 +25,11 @@ version="1.0" encoding="utf-8"?>
     <string name="error_loading">Erreur pendant le chargement</string>
     <string name="no_sessions">Chargement en cours</string>
     <string name="no_speaker">Aucun speaker</string>
+    <string name="drawer_open">Menu Ouvert</string>
+    <string name="drawer_close">Menu Fermé</string>
+    
     <!-- Sessions -->
+    <string name="title_infos">Infos pratiques</string>
     <string name="title_session">Sessions</string>
     <string name="title_speakers">Speakers</string>
     <string name="tab_web">Web / Mobile</string>

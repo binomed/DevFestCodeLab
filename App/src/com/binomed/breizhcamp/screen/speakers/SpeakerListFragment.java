@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.adapters.list.SpeakersAdapter;
@@ -79,6 +80,7 @@ public class SpeakerListFragment extends AbstractRoboSherlockListFragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		getSherlockActivity().getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 		// We do all stuff when the views are created because they are only inject by robo guice at this moment
 		list.setEmptyView(emptyView);
 

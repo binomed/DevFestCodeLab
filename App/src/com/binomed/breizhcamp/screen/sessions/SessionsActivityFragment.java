@@ -16,12 +16,15 @@ package com.binomed.breizhcamp.screen.sessions;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.adapters.pager.SessionsPagerAdapter;
-import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockActivity;
+import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockFragment;
 import com.viewpagerindicator.TabPageIndicator;
 
 /**
@@ -30,7 +33,7 @@ import com.viewpagerindicator.TabPageIndicator;
  *         Simple Activity hosting a viewPager
  * 
  */
-public class SessionsActivity extends AbstractRoboSherlockActivity {
+public class SessionsActivityFragment extends AbstractRoboSherlockFragment {
 
 	/*
 	 * Robo Guice vars
@@ -48,15 +51,26 @@ public class SessionsActivity extends AbstractRoboSherlockActivity {
 	SessionsPagerAdapter adapter;
 	ActionBar actionBar;
 
+	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_slide);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+		View mainView = inflater.inflate(R.layout.activity_slide, container, false);
+		return mainView;
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.binomed.devfest.utils.activities.AbstractRoboSherlockFragment#onViewCreated(android.view.View, android.os.Bundle)
+	 */
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
 
 		// We activate the action bar
-		actionBar = getSupportActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setTitle(R.string.title_session);
+		actionBar = getSherlockActivity().getSupportActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
 		final String[] dropdownvalues = getResources().getStringArray(R.array.days);
@@ -77,7 +91,7 @@ public class SessionsActivity extends AbstractRoboSherlockActivity {
 		});
 
 		// We set the content of viewPager
-		adapter = new SessionsPagerAdapter(getSupportFragmentManager(), this);
+		adapter = new SessionsPagerAdapter(getActivity().getSupportFragmentManager(), getActivity());
 		adapter.setDay(0);
 		viewPager.setAdapter(adapter);
 		pageIndicator.setViewPager(viewPager, 0);

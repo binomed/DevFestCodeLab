@@ -16,15 +16,14 @@ package com.binomed.breizhcamp.screen.infos;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.adapters.pager.InfosPagerAdapter;
-import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockActivity;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.maps.MapsInitializer;
+import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockFragment;
 import com.viewpagerindicator.TabPageIndicator;
 
 /**
@@ -33,10 +32,10 @@ import com.viewpagerindicator.TabPageIndicator;
  *         Basic activity that will host the viewPager of informations
  * 
  */
-public class InfosActivity extends AbstractRoboSherlockActivity {
+public class InfosFragmentActivity extends AbstractRoboSherlockFragment {
 
 	/*
-	 * Robo guice vars
+	 * Robo Guice vars
 	 */
 
 	@InjectView(R.id.pager)
@@ -46,29 +45,33 @@ public class InfosActivity extends AbstractRoboSherlockActivity {
 	TabPageIndicator pageIndicator;
 
 	/*
-	 * Instance vars
+	 * Instances vars
 	 */
-
 	InfosPagerAdapter adapter;
-	ActionBar actionBar;
 
+	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_slide);
-		try {
-			MapsInitializer.initialize(this);
-		} catch (GooglePlayServicesNotAvailableException e) {
-			Log.e("InfosActivity", "error maps service not available", e);
-		}
-		Log.i("InfosActivity", "Service available : " + GooglePlayServicesUtil.isGooglePlayServicesAvailable(this));
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		// We add the action bar
-		actionBar = getSupportActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		View mainView = inflater.inflate(R.layout.activity_slide, container, false);
+		return mainView;
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.binomed.devfest.utils.activities.AbstractRoboSherlockFragment#onViewCreated(android.view.View, android.os.Bundle)
+	 */
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		// We activate the action bar
+		getSherlockActivity().getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
 
 		// We fill the view pager
-		adapter = new InfosPagerAdapter(getSupportFragmentManager(), this);
+		adapter = new InfosPagerAdapter(getSherlockActivity().getSupportFragmentManager(), getActivity());
 		viewPager.setAdapter(adapter);
 		pageIndicator.setViewPager(viewPager, 0);
 	}

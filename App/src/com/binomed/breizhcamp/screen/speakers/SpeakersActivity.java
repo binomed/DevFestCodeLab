@@ -17,9 +17,9 @@ import android.os.Bundle;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.binomed.breizhcamp.R;
-import com.binomed.breizhcamp.utils.activities.AbstractDevFestRoboActivity;
+import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockActivity;
 
-public class SpeakersActivity extends AbstractDevFestRoboActivity {
+public class SpeakersActivity extends AbstractRoboSherlockActivity {
 
 	ActionBar actionBar;
 

@@ -158,12 +158,6 @@ public class InfosFragment extends AbstractRoboSherlockFragment {
 	 * @param mainView
 	 */
 	private void manageMapView(View mainView) {
-		// mapFragment = new SupportMapFragment();
-		// FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-		// transaction.add(R.id.mapFragment, mapFragment);
-		// transaction.commit();
-
-		// mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFragment);
 		String namePlace = null;
 		String address = null;
 		switch (type) {

@@ -50,7 +50,15 @@ version="1.0" encoding="utf-8"?>
       
       <!-- Activities -->
         <activity android:name=".screen.infos.InfosActivity"></activity>
+        <!-- 
         <activity android:name=".screen.sessions.SessionsActivity">
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+         -->
+        <activity android:name=".screen.MainActivity">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

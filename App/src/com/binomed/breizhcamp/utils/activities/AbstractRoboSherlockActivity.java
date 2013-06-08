@@ -36,10 +36,11 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.google.inject.Inject;
 import com.google.inject.Key;
 
-public class AbstractDevFestRoboActivity extends AbstractDevFestSlidingActivity implements RoboContext {
+public class AbstractRoboSherlockActivity extends SherlockFragmentActivity implements RoboContext {
 
 	protected EventManager eventManager;
 	protected HashMap<Key<?>, Object> scopedObjects = new HashMap<Key<?>, Object>();
