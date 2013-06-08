@@ -14,33 +14,33 @@
 package com.binomed.breizhcamp.screen.infos;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import roboguice.inject.InjectResource;
 import roboguice.inject.InjectView;
-import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.view.Window;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.utils.BreizhCampCst;
-import com.binomed.breizhcamp.utils.activities.InnerActivityManagerFragment;
-import com.binomed.breizhcamp.utils.activities.InnerMapActivity;
-import com.cyrilmottier.polaris.Annotation;
-import com.cyrilmottier.polaris.PolarisMapView;
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapController;
+import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockFragment;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * @author JefBinomed
@@ -48,13 +48,11 @@ import com.google.android.maps.MapController;
  *         Generic fragment for informations
  * 
  */
-public class InfosFragment extends InnerActivityManagerFragment {
+public class InfosFragment extends AbstractRoboSherlockFragment {
 
 	/*
 	 * RoboGuice vars
 	 */
-	@InjectView(R.id.mapViewContainer)
-	ViewGroup mapViewContainer;
 	@InjectView(R.id.lbl)
 	TextView lbl;
 	@InjectView(R.id.desc)
@@ -82,9 +80,9 @@ public class InfosFragment extends InnerActivityManagerFragment {
 	/*
 	 * Instance vars
 	 */
-	PolarisMapView mapView;
-	MapController mapController;
-	View innerMapView, mainView;
+	Marker curentPosition;
+	SupportMapFragment mapFragment;
+	View mainView;
 	private Geocoder geoCoder;
 	private int type = -1;
 
@@ -97,6 +95,10 @@ public class InfosFragment extends InnerActivityManagerFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		mainView = inflater.inflate(R.layout.fragment_infos, container, false);
+		mapFragment = SupportMapFragment.newInstance();
+		FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
+		fragmentTransaction.add(R.id.mapFragment, mapFragment);
+		fragmentTransaction.commit();
 
 		return mainView;
 
@@ -132,7 +134,9 @@ public class InfosFragment extends InnerActivityManagerFragment {
 		case BreizhCampCst.TYPE_CAR:
 			lbl.setText(R.string.infos_car);
 			desc.setText(R.string.infos_car_desc);
-			mapViewContainer.setVisibility(View.GONE);
+			FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+			transaction.hide(mapFragment);
+			transaction.commit();
 			break;
 		case BreizhCampCst.TYPE_SLEEP:
 			lbl.setText(R.string.infos_sleep);
@@ -154,64 +158,60 @@ public class InfosFragment extends InnerActivityManagerFragment {
 	 * @param mainView
 	 */
 	private void manageMapView(View mainView) {
+		// mapFragment = new SupportMapFragment();
+		// FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+		// transaction.add(R.id.mapFragment, mapFragment);
+		// transaction.commit();
 
-		// We have to get an instance of the MapActivity
-		Intent intent = new Intent(getActivity(), InnerMapActivity.class);
-		final Window w = getLocalActivityManager().startActivity(ACTIVITY_TAG + type, intent);
-		// We inject the MapActivity layer into the specified place
-		innerMapView = w != null ? w.getDecorView() : null;
+		// mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapFragment);
+		String namePlace = null;
+		String address = null;
+		switch (type) {
+		case BreizhCampCst.TYPE_PLACE:
+			namePlace = placeName;
+			address = placePlace;
+			break;
+		case BreizhCampCst.TYPE_SLEEP:
+			namePlace = sleepName;
+			address = sleepPlace;
+			break;
+		case BreizhCampCst.TYPE_AFTER_PARTY:
+			namePlace = afterPartyName;
+			address = afterPartyPlace;
+			break;
 
-		if (innerMapView != null) {
-			ViewParent parent = innerMapView.getParent();
-			if (parent != null) {
-				ViewGroup v = (ViewGroup) parent;
-				v.removeView(innerMapView);
-			}
-
-			innerMapView.setVisibility(View.VISIBLE);
-			innerMapView.setFocusableInTouchMode(true);
-			if (innerMapView instanceof ViewGroup) {
-				((ViewGroup) innerMapView).setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-			}
+		default:
+			break;
 		}
-		// When the mapView is well created, we add it to the container
-		mapViewContainer.addView(innerMapView);
 
-		// We retrieve the mapView in order to manipulate it
-		InnerMapActivity activityMap = (InnerMapActivity) getLocalActivityManager().getActivity(ACTIVITY_TAG + type);
-		if (activityMap != null) {
-			// We init it and place Annotations (Overlays)
-			mapView = activityMap.getMapView();
-			mapController = mapView.getController();
-			mapController.setZoom(17);
-			List<Annotation> annotations = new ArrayList<Annotation>();
-			String namePlace = null;
-			String address = null;
-			switch (type) {
-			case BreizhCampCst.TYPE_PLACE:
-				namePlace = placeName;
-				address = placePlace;
-				break;
-			case BreizhCampCst.TYPE_SLEEP:
-				namePlace = sleepName;
-				address = sleepPlace;
-				break;
-			case BreizhCampCst.TYPE_AFTER_PARTY:
-				namePlace = afterPartyName;
-				address = afterPartyPlace;
-				break;
+		final String namePlaceFinal = namePlace;
+		final LatLng point = getGeoPoint(address);
+		if (point != null) {
+			final Handler mHandler = new Handler();
+			mHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					GoogleMap map = mapFragment.getMap();
+					if (map != null) {
+						map.setMyLocationEnabled(true);
+						// INIT HERE
+						map.getUiSettings().setMyLocationButtonEnabled(false);
+						// ...
 
-			default:
-				break;
-			}
-			GeoPoint point = getGeoPoint(address);
-			if (point != null) {
-				mapController.animateTo(point);
-				annotations.add(new Annotation(point, namePlace));
-				mapView.setAnnotations(annotations, R.drawable.map_pin_holed_blue_normal);
-			}
-
+						curentPosition = mapFragment.getMap() //
+								.addMarker(new MarkerOptions() //
+										.position(point) //
+										.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pin_holed_blue_normal)) //
+										.title(namePlaceFinal)//
+								);
+						mapFragment.getMap().animateCamera(CameraUpdateFactory.zoomTo(17), 2000, null);
+						mapFragment.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(point, 17));
+					} else
+						mHandler.post(this);
+				}
+			});
 		}
+
 	}
 
 	/**
@@ -220,32 +220,20 @@ public class InfosFragment extends InnerActivityManagerFragment {
 	 * @param address
 	 * @return
 	 */
-	private GeoPoint getGeoPoint(String address) {
+	private LatLng getGeoPoint(String address) {
 
-		GeoPoint gp = null;
+		LatLng latLng = null;
 		Address ad = null;
 		try {
 			List<Address> addresses = geoCoder.getFromLocationName(address, 1);
 			if (addresses != null && addresses.size() > 0) {
 
 				ad = addresses.get(0);
-				gp = new GeoPoint((int) (ad.getLatitude() * 1E6), (int) (ad.getLongitude() * 1E6));
+				latLng = new LatLng(ad.getLatitude(), ad.getLongitude());
 			}
 		} catch (IOException e) {
 			Log.e(TAG, "Error getting place", e);
 		}
-		return gp;
+		return latLng;
 	}
-
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		// We have to clean the map view
-		if (innerMapView != null) {
-			mapView = null;
-			mapViewContainer.removeView(innerMapView);
-			innerMapView = null;
-		}
-	}
-
 }

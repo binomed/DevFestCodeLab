@@ -23,14 +23,15 @@ import org.springframework.web.client.RestTemplate;
 
 import android.app.Application;
 
-import com.octo.android.robospice.SpringAndroidContentService;
+import com.octo.android.robospice.SpringAndroidSpiceService;
 import com.octo.android.robospice.persistence.CacheManager;
-import com.octo.android.robospice.persistence.json.jackson.JacksonObjectPersisterFactory;
+import com.octo.android.robospice.persistence.exception.CacheCreationException;
+import com.octo.android.robospice.persistence.springandroid.json.jackson.JacksonObjectPersisterFactory;
 
-public class BreizhCampSpiceService extends SpringAndroidContentService {
+public class BreizhCampSpiceService extends SpringAndroidSpiceService {
 
 	@Override
-	public CacheManager createCacheManager(Application application) {
+	public CacheManager createCacheManager(Application application) throws CacheCreationException {
 		CacheManager cacheManager = new CacheManager();
 
 		// Only init Jackson part because we don't need to init other factories

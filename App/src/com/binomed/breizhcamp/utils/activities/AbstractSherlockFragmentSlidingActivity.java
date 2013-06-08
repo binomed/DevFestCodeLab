@@ -19,9 +19,9 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.slidingmenu.lib.SlidingMenu;
-import com.slidingmenu.lib.app.SlidingActivityBase;
-import com.slidingmenu.lib.app.SlidingActivityHelper;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityHelper;
 
 /**
  * @author JefBinomed Override of class for compatibility between SlidingMenu and ActionbarSherlock
@@ -87,12 +87,12 @@ public class AbstractSherlockFragmentSlidingActivity extends SherlockFragmentAct
 		mHelper.toggle();
 	}
 
-	public void showAbove() {
-		mHelper.showAbove();
+	public void showContent() {
+		mHelper.showContent();
 	}
 
-	public void showBehind() {
-		mHelper.showBehind();
+	public void showSecondaryMenu() {
+		mHelper.showSecondaryMenu();
 	}
 
 	public void setSlidingActionBarEnabled(boolean b) {
@@ -105,6 +105,12 @@ public class AbstractSherlockFragmentSlidingActivity extends SherlockFragmentAct
 		if (b)
 			return b;
 		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public void showMenu() {
+		mHelper.showMenu();
+
 	}
 
 }

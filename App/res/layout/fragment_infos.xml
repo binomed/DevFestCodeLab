@@ -12,7 +12,7 @@
  * THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC 
  * LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM 
  * CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
- */ 
+ */ 
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView"
@@ -48,9 +48,9 @@
         android:layout_below="@+id/separator"
         android:paddingLeft="30dip"
         android:layout_marginTop="10dip"/>
-
-   <FrameLayout
-			    android:id="@+id/mapViewContainer"
+    
+      <FrameLayout 
+			  android:id="@+id/mapFragment"
                 android:layout_below="@+id/desc"
                 android:layout_marginTop="20dip"
                 android:layout_marginLeft="50dip"
@@ -59,7 +59,7 @@
                 android:layout_centerHorizontal="true"
 			    android:layout_width="@dimen/size_map"
 			    android:layout_height="@dimen/size_map"
-                />
- 
+			  class="com.google.android.gms.maps.SupportMapFragment"/>
+
 	</RelativeLayout>
 </ScrollView>

@@ -14,7 +14,7 @@
 package com.binomed.breizhcamp.screen.speakers.requests;
 
 import com.binomed.breizhcamp.utils.BreizhCampCst;
-import com.octo.android.robospice.request.springandroid.RestContentRequest;
+import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 
 import fr.ybonnel.breizhcamppdf.model.Speaker;
 
@@ -24,7 +24,7 @@ import fr.ybonnel.breizhcamppdf.model.Speaker;
  *         RoboSpice request
  * 
  */
-public class SpeakersJsonRequest extends RestContentRequest<Speaker[]> {
+public class SpeakersJsonRequest extends SpringAndroidSpiceRequest<Speaker[]> {
 
 	public SpeakersJsonRequest() {
 		super(Speaker[].class);

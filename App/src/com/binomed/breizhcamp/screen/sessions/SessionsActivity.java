@@ -67,9 +67,9 @@ public class SessionsActivity extends AbstractDevFestRoboActivity {
 			@Override
 			public boolean onNavigationItemSelected(int itemPosition, long itemId) {
 				// We set the content of viewPager
-				adapter = new SessionsPagerAdapter(getSupportFragmentManager(), SessionsActivity.this);
 				adapter.setDay(itemPosition);
-				viewPager.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
+				viewPager.invalidate();
 				pageIndicator.setCurrentItem(0);
 				pageIndicator.notifyDataSetChanged();
 				return true;

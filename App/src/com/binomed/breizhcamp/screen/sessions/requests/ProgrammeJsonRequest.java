@@ -16,7 +16,7 @@ package com.binomed.breizhcamp.screen.sessions.requests;
 import java.util.HashMap;
 
 import com.binomed.breizhcamp.utils.BreizhCampCst;
-import com.octo.android.robospice.request.springandroid.RestContentRequest;
+import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 
 import fr.ybonnel.breizhcamppdf.model.ProgrammeJsonBean;
 
@@ -26,7 +26,7 @@ import fr.ybonnel.breizhcamppdf.model.ProgrammeJsonBean;
  *         Programme robospice request
  * 
  */
-public class ProgrammeJsonRequest extends RestContentRequest<ProgrammeJsonBean> {
+public class ProgrammeJsonRequest extends SpringAndroidSpiceRequest<ProgrammeJsonBean> {
 
 	public ProgrammeJsonRequest() {
 		super(ProgrammeJsonBean.class);

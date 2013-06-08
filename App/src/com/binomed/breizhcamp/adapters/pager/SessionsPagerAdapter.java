@@ -18,7 +18,7 @@ import roboguice.inject.InjectResource;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.binomed.breizhcamp.R;
@@ -30,7 +30,7 @@ import com.binomed.breizhcamp.screen.sessions.SessionsListFragment;
  *         Session pageAdapter for viewPager
  * 
  */
-public class SessionsPagerAdapter extends FragmentPagerAdapter {// implements TitleProvider {
+public class SessionsPagerAdapter extends FragmentStatePagerAdapter {// implements TitleProvider {
 
 	/*
 	 * Static vars
@@ -83,6 +83,11 @@ public class SessionsPagerAdapter extends FragmentPagerAdapter {// implements Ti
 		fragment.setDay(day);
 		fragment.setTrack(index);
 		return fragment;
+	}
+
+	@Override
+	public int getItemPosition(Object object) {
+		return POSITION_NONE;
 	}
 
 	@Override

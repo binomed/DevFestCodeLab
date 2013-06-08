@@ -18,7 +18,7 @@ import java.util.Map;
 
 import com.binomed.breizhcamp.model.SpeakerBean;
 import com.binomed.breizhcamp.utils.BreizhCampCst;
-import com.octo.android.robospice.request.springandroid.RestContentRequest;
+import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 
 /**
  * @author JefBinomed
@@ -26,7 +26,7 @@ import com.octo.android.robospice.request.springandroid.RestContentRequest;
  *         Speakers of session robo spice request
  * 
  */
-public class SessionSpeakersJsonRequest extends RestContentRequest<SpeakerBean[]> {
+public class SessionSpeakersJsonRequest extends SpringAndroidSpiceRequest<SpeakerBean[]> {
 
 	private final String[] idSpeakers;
 

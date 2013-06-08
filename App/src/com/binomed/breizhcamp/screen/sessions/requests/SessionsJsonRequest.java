@@ -18,7 +18,7 @@ import java.util.Map;
 
 import com.binomed.breizhcamp.model.SessionBean;
 import com.binomed.breizhcamp.utils.BreizhCampCst;
-import com.octo.android.robospice.request.springandroid.RestContentRequest;
+import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 
 /**
  * @author JefBinomed
@@ -26,7 +26,7 @@ import com.octo.android.robospice.request.springandroid.RestContentRequest;
  *         Sessions robospice request
  * 
  */
-public class SessionsJsonRequest extends RestContentRequest<SessionBean[]> {
+public class SessionsJsonRequest extends SpringAndroidSpiceRequest<SessionBean[]> {
 
 	private final int type;
 	private final int day;

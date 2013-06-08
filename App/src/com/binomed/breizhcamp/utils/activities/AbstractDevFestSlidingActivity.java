@@ -20,7 +20,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.screen.HomeFragment;
 import com.binomed.breizhcamp.screen.about.AboutDialogFragment;
-import com.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 public abstract class AbstractDevFestSlidingActivity extends AbstractSherlockFragmentSlidingActivity {
 

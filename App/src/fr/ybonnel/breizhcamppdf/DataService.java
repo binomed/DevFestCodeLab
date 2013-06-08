@@ -27,9 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-
 import fr.ybonnel.breizhcamppdf.model.Jour;
 import fr.ybonnel.breizhcamppdf.model.Programme;
 import fr.ybonnel.breizhcamppdf.model.Talk;
@@ -89,15 +86,6 @@ public class DataService {
 			}
 		}
 		return programme;
-	}
-
-	public List<String> getDates() {
-		return Lists.transform(getProgramme().getJours(), new Function<Jour, String>() {
-			@Override
-			public String apply(Jour input) {
-				return input.getDate();
-			}
-		});
 	}
 
 	private List<Talk> talks = null;

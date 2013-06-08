@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.binomed.breizhcamp.utils.BreizhCampCst;
-import com.octo.android.robospice.request.springandroid.RestContentRequest;
+import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 
 import fr.ybonnel.breizhcamppdf.model.TalkDetail;
 
@@ -27,7 +27,7 @@ import fr.ybonnel.breizhcamppdf.model.TalkDetail;
  *         Speakers of session robo spice request
  * 
  */
-public class SessionJsonRequest extends RestContentRequest<TalkDetail> {
+public class SessionJsonRequest extends SpringAndroidSpiceRequest<TalkDetail> {
 
 	private final String id;
 

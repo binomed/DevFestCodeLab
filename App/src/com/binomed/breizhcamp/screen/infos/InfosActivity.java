@@ -16,11 +16,15 @@ package com.binomed.breizhcamp.screen.infos;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.adapters.pager.InfosPagerAdapter;
 import com.binomed.breizhcamp.utils.activities.AbstractDevFestRoboActivity;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.MapsInitializer;
 import com.viewpagerindicator.TabPageIndicator;
 
 /**
@@ -52,6 +56,12 @@ public class InfosActivity extends AbstractDevFestRoboActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_slide);
+		try {
+			MapsInitializer.initialize(this);
+		} catch (GooglePlayServicesNotAvailableException e) {
+			Log.e("InfosActivity", "error maps service not available", e);
+		}
+		Log.i("InfosActivity", "Service available : " + GooglePlayServicesUtil.isGooglePlayServicesAvailable(this));
 
 		// We add the action bar
 		actionBar = getSupportActionBar();
