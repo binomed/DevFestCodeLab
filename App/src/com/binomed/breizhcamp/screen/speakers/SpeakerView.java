@@ -76,6 +76,7 @@ public class SpeakerView extends RelativeLayout implements OnClickListener {
 		int index = Menu.FIRST;
 		if (liens != null) {
 			QuickAction quickAction = new QuickAction(context);
+			boolean actions = false;
 			for (Lien lien : liens) {
 				final Lien lienFinal = lien;
 				int drawable = -1;
@@ -87,6 +88,7 @@ public class SpeakerView extends RelativeLayout implements OnClickListener {
 					drawable = R.drawable.github;
 				}
 				if (drawable != -1) {
+					actions = true;
 					ActionItem gPlusActionItem = new ActionItem(index, context.getResources().getDrawable(R.drawable.google_plus));
 					quickAction.addActionItem(gPlusActionItem);
 					quickAction.setOnActionItemClickListener(new OnActionItemClickListener() {
@@ -100,9 +102,11 @@ public class SpeakerView extends RelativeLayout implements OnClickListener {
 
 						}
 					});
-					quickAction.show(view);
 				}
 				index++;
+			}
+			if (actions) {
+				quickAction.show(view);
 			}
 		}
 

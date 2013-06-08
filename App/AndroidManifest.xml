@@ -49,22 +49,12 @@ version="1.0" encoding="utf-8"?>
 	    android:value="AIzaSyBdGc_-zYmH-EE2bn7yEKxeEdggkNvpYKg"/>
       
       <!-- Activities -->
-        <activity android:name=".screen.infos.InfosActivity"></activity>
-        <!-- 
-        <activity android:name=".screen.sessions.SessionsActivity">
-             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-         -->
         <activity android:name=".screen.MainActivity">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screen.speakers.SpeakersActivity"></activity>
         <activity android:name=".screen.sessions.SessionActivity"></activity>
         <service android:name=".service.BreizhCampSpiceService" android:exported="false"></service>
 

@@ -14,12 +14,12 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.binomed.breizhcamp.R;
+import com.binomed.breizhcamp.adapters.list.NavigationDrawerAdapter;
 import com.binomed.breizhcamp.screen.infos.InfosFragmentActivity;
 import com.binomed.breizhcamp.screen.sessions.SessionsActivityFragment;
 import com.binomed.breizhcamp.screen.speakers.SpeakerListFragment;
@@ -45,11 +45,8 @@ public class MainActivity extends AbstractRoboSherlockActivity implements Drawer
 
 		final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		final String[] names = new String[] { speakers, infos, sessions };
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getSupportActionBar().getThemedContext(), android.R.layout.simple_list_item_1, names);
-
 		final ListView navList = (ListView) findViewById(R.id.drawer);
-		navList.setAdapter(adapter);
+		navList.setAdapter(new NavigationDrawerAdapter(this));
 		navList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

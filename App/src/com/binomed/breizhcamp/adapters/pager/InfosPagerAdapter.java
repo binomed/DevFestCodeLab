@@ -22,7 +22,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.screen.infos.InfosFragment;
-import com.binomed.breizhcamp.screen.infos.PartnairesFragment;
 
 /**
  * @author JefBinomed
@@ -36,7 +35,7 @@ public class InfosPagerAdapter extends FragmentPagerAdapter {// implements Title
 	 * Static vars
 	 */
 	private static final String TAG = "InfosPageAdapter";
-	private static final int NB_PAGES = 5;
+	private static final int NB_PAGES = 4;
 
 	/*
 	 * Instance vars
@@ -55,8 +54,6 @@ public class InfosPagerAdapter extends FragmentPagerAdapter {// implements Title
 	String sleepTabName;
 	@InjectResource(R.string.tab_after_party)
 	String afterPartyTabName;
-	@InjectResource(R.string.tab_partenaires)
-	String partenairesTabName;
 
 	public InfosPagerAdapter(FragmentManager fm, Context context) {
 		super(fm);
@@ -66,19 +63,9 @@ public class InfosPagerAdapter extends FragmentPagerAdapter {// implements Title
 
 	@Override
 	public Fragment getItem(int index) {
-		switch (index) {
-		case 0:
-		case 1:
-		case 2:
-		case 3: {
-			InfosFragment fragment = (InfosFragment) Fragment.instantiate(context, InfosFragment.class.getName());
-			fragment.setType(index);
-			return fragment;
-		}
-		default: {
-			return Fragment.instantiate(context, PartnairesFragment.class.getName());
-		}
-		}
+		InfosFragment fragment = (InfosFragment) Fragment.instantiate(context, InfosFragment.class.getName());
+		fragment.setType(index);
+		return fragment;
 	}
 
 	@Override
@@ -96,9 +83,8 @@ public class InfosPagerAdapter extends FragmentPagerAdapter {// implements Title
 		case 2:
 			return sleepTabName;
 		case 3:
-			return afterPartyTabName;
 		default:
-			return partenairesTabName;
+			return afterPartyTabName;
 		}
 	}
 
