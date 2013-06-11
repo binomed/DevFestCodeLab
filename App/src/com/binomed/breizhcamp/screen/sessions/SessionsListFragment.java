@@ -13,10 +13,16 @@
  */
 package com.binomed.breizhcamp.screen.sessions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONObject;
 
 import roboguice.inject.InjectView;
 import android.content.Intent;
@@ -31,16 +37,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.binomed.breizhcamp.R;
 import com.binomed.breizhcamp.adapters.list.SessionsAdapter;
-import com.binomed.breizhcamp.screen.sessions.requests.ProgrammeJsonRequest;
-import com.binomed.breizhcamp.service.BreizhCampSpiceService;
 import com.binomed.breizhcamp.utils.BreizhCampCst;
 import com.binomed.breizhcamp.utils.activities.AbstractRoboSherlockListFragment;
-import com.octo.android.robospice.SpiceManager;
-import com.octo.android.robospice.persistence.DurationInMillis;
-import com.octo.android.robospice.persistence.exception.SpiceException;
-import com.octo.android.robospice.request.listener.RequestListener;
 
 import fr.ybonnel.breizhcamppdf.model.ProgrammeJsonBean;
 import fr.ybonnel.breizhcamppdf.model.Talk;
@@ -86,10 +92,12 @@ public class SessionsListFragment extends AbstractRoboSherlockListFragment imple
 	/*
 	 * Instance vars
 	 */
+	SherlockFragmentActivity activity;
 	SessionsAdapter adapter;
 	private int track = -1;
 	private int day = -1;
-	private SpiceManager spiceManager = new SpiceManager(BreizhCampSpiceService.class);
+
+	// private SpiceManager spiceManager = new SpiceManager(BreizhCampSpiceService.class);
 
 	public void setDay(int day) {
 		this.day = day;
@@ -122,61 +130,72 @@ public class SessionsListFragment extends AbstractRoboSherlockListFragment imple
 		adapter = new SessionsAdapter(getActivity());
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(this);
+		activity = getSherlockActivity();
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminate(true);
 		((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(true);
 		emptyView.setText(R.string.no_sessions);
 
 		// Call RoboSpice service
-		spiceManager.execute(new ProgrammeJsonRequest(), PROGRAMME_KEY, DurationInMillis.NEVER, new RequestListener<ProgrammeJsonBean>() {
+		RequestQueue queue = Volley.newRequestQueue(getActivity());
+		JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, BreizhCampCst.URL_PROGRAMME, null, new Response.Listener<JSONObject>() {
 
 			@Override
-			public void onRequestFailure(SpiceException arg0) {
-				Log.e(TAG, "Error calling services ", arg0);
-				emptyView.setText(R.string.error_loading);
-			}
+			public void onResponse(JSONObject response) {
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+					ProgrammeJsonBean result = mapper.readValue(response.toString(), ProgrammeJsonBean.class);
 
-			@Override
-			public void onRequestSuccess(ProgrammeJsonBean result) {
-
-				ArrayList<Talk> liste = new ArrayList<Talk>();
-				for (Talk session : result.getProgramme().getJours().get(day).getTracks().get(track).getTalks()) {
-					if (session.getTime().length() < 5) {
-						session.setTime("0" + session.getTime());
+					ArrayList<Talk> liste = new ArrayList<Talk>();
+					for (Talk session : result.getProgramme().getJours().get(day).getTracks().get(track).getTalks()) {
+						if (session.getTime().length() < 5) {
+							session.setTime("0" + session.getTime());
+						}
+						int duree = dureeOfTalks.get(session.getFormat());
+						int hDebut = Integer.parseInt(session.getTime().split(":")[0]);
+						int mDebut = Integer.parseInt(session.getTime().split(":")[1]);
+						int hFin = hDebut;
+						int mFin = mDebut + duree;
+						while (mFin >= 60) {
+							mFin = mFin - 60;
+							hFin++;
+						}
+						session.setEndTime((hFin < 10 ? "0" : "") + hFin + ":" + (mFin < 10 ? "0" : "") + mFin);
+						liste.add(session);
 					}
-
-					int duree = dureeOfTalks.get(session.getFormat());
-					int hDebut = Integer.parseInt(session.getTime().split(":")[0]);
-					int mDebut = Integer.parseInt(session.getTime().split(":")[1]);
-
-					int hFin = hDebut;
-					int mFin = mDebut + duree;
-					while (mFin >= 60) {
-						mFin = mFin - 60;
-						hFin++;
-					}
-
-					session.setEndTime((hFin < 10 ? "0" : "") + hFin + ":" + (mFin < 10 ? "0" : "") + mFin);
-					liste.add(session);
+					Collections.sort(liste);
+					adapter.setSessionList(liste);
+					adapter.notifyDataSetChanged();
+					activity.setProgressBarIndeterminateVisibility(false);
+				} catch (JsonParseException e) {
+					Log.e(TAG, "ParseException", e);
+				} catch (JsonMappingException e) {
+					Log.e(TAG, "JsonMappingException", e);
+				} catch (IOException e) {
+					Log.e(TAG, "IOException", e);
 				}
-				Collections.sort(liste);
-				adapter.setSessionList(liste);
-				adapter.notifyDataSetChanged();
-				((SherlockFragmentActivity) getActivity()).setProgressBarIndeterminateVisibility(false);
+
+			}
+		}, new Response.ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				Log.e(TAG, "Volley", error);
 
 			}
 		});
+		queue.add(request);
 
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		spiceManager.start(getActivity());
+		// spiceManager.start(getActivity());
 	}
 
 	@Override
 	public void onStop() {
-		spiceManager.shouldStop();
+		// spiceManager.shouldStop();
 		super.onStop();
 	}
 

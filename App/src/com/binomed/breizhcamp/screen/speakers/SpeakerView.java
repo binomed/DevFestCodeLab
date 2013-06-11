@@ -89,7 +89,7 @@ public class SpeakerView extends RelativeLayout implements OnClickListener {
 				}
 				if (drawable != -1) {
 					actions = true;
-					ActionItem gPlusActionItem = new ActionItem(index, context.getResources().getDrawable(R.drawable.google_plus));
+					ActionItem gPlusActionItem = new ActionItem(index, context.getResources().getDrawable(drawable));
 					quickAction.addActionItem(gPlusActionItem);
 					quickAction.setOnActionItemClickListener(new OnActionItemClickListener() {
 
